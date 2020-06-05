@@ -33,7 +33,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.SysConfig"
                         }
                     }
@@ -291,7 +290,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.Dept"
                         }
                     }
@@ -326,7 +324,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.Dept"
                         }
                     }
@@ -467,7 +464,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.DictType"
                         }
                     }
@@ -492,9 +488,9 @@
                     "application/json"
                 ],
                 "tags": [
-                    "配置"
+                    "字典数据"
                 ],
-                "summary": "添加配置",
+                "summary": "添加字典数据",
                 "parameters": [
                     {
                         "description": "data",
@@ -502,8 +498,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
-                            "$ref": "#/definitions/models.SysConfig"
+                            "$ref": "#/definitions/models.DictType"
                         }
                     }
                 ],
@@ -679,7 +674,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.DictType"
                         }
                     }
@@ -714,7 +708,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.DictType"
                         }
                     }
@@ -860,7 +853,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.LoginLog"
                         }
                     }
@@ -895,7 +887,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.LoginLog"
                         }
                     }
@@ -1144,7 +1135,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.Menu"
                         }
                     }
@@ -1322,7 +1312,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.SysOperLog"
                         }
                     }
@@ -1510,7 +1499,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.Post"
                         }
                     }
@@ -1547,7 +1535,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.Dept"
                         }
                     }
@@ -1662,7 +1649,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.SysRole"
                         }
                     }
@@ -1692,7 +1678,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.SysRole"
                         }
                     }
@@ -1871,7 +1856,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.Dept"
                         }
                     }
@@ -2046,7 +2030,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.SysUser"
                         }
                     }
@@ -2139,7 +2122,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.SysUser"
                         }
                     }
@@ -2243,7 +2225,6 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/models.Login"
                         }
                     }

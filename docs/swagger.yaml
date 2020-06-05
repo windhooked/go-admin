@@ -490,7 +490,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.SysConfig'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -649,7 +648,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.Dept'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -676,7 +674,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.Dept'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -763,8 +760,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/models.SysConfig'
-          type: object
+          $ref: '#/definitions/models.DictType'
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -772,9 +768,9 @@ paths:
             type: string
       security:
       - Bearer: []
-      summary: 添加配置
+      summary: 添加字典数据
       tags:
-      - 配置
+      - 字典数据
     put:
       consumes:
       - application/json
@@ -786,7 +782,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.DictType'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -897,7 +892,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.DictType'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -919,7 +913,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.DictType'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1011,7 +1004,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.LoginLog'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1033,7 +1025,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.LoginLog'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1208,7 +1199,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.Menu'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "修改失败"}'
@@ -1302,7 +1292,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.SysOperLog'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1420,7 +1409,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.Post'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1443,7 +1431,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.Dept'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1518,7 +1505,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.SysRole'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1538,7 +1524,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.SysRole'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "修改失败"}'
@@ -1668,7 +1653,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.Dept'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1762,7 +1746,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.SysUser'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "添加失败"}'
@@ -1836,7 +1819,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.SysUser'
-          type: object
       responses:
         "200":
           description: '{"code": -1, "message": "修改失败"}'
@@ -1889,7 +1871,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/models.Login'
-          type: object
       responses:
         "200":
           description: '{"code": 200, "expire": "2019-08-07T12:45:48+08:00", "token":

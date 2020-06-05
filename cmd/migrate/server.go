@@ -33,21 +33,21 @@ func init() {
 func run() {
 	usage := `start init`
 	fmt.Println(usage)
-	//1. 读取配置
+	//1. read config
 	config2.ConfigSetup(config)
-	//2. 设置日志
+	//2. setup logs
 	tools.InitLogger()
-	//3. 初始化数据库链接
+	//3. init db
 	database.Setup()
-	//4. 数据库迁移
+	//4. migrate
 	_ = migrateModel()
-	log.Println("数据库结构初始化成功！")
-	//5. 数据初始化完成
+	log.Println("The database structure is initialized successfully!")
+	//5. data init complete
 	if err := models.InitDb(); err != nil {
-		log.Fatal("数据库基础数据初始化失败！")
+		log.Fatal("Database basic data initialization failed!")
 	}
 
-	usage = `数据库基础数据初始化成功`
+	usage = `The database basic data is initialized successfully`
 	fmt.Println(usage)
 }
 

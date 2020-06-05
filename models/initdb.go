@@ -11,16 +11,16 @@ import (
 func InitDb() error {
 	filePath := "config/db.sql"
 	if config2.DatabaseConfig.Dbtype == "sqlite3" {
-		fmt.Println("sqlite3数据库无需初始化！")
+		fmt.Println("sqlite3 database does not need to be initialized!")
 		return nil
 	}
 	sql, err := Ioutil(filePath)
 	if err != nil {
-		fmt.Println("数据库基础数据初始化脚本读取失败！原因:", err.Error())
+		fmt.Println("database basic data initialization script failed ", err.Error())
 		return err
 	}
 	sqlList := strings.Split(sql, ";")
-	for i := 0; i < len(sqlList) - 1; i++ {
+	for i := 0; i < len(sqlList)-1; i++ {
 		if strings.Contains(sqlList[i], "--") {
 			fmt.Println(sqlList[i])
 			continue
@@ -37,7 +37,7 @@ func InitDb() error {
 
 func Ioutil(name string) (string, error) {
 	if contents, err := ioutil.ReadFile(name); err == nil {
-		//因为contents是[]byte类型，直接转换成string类型后会多一行空格,需要使用strings.Replace替换换行符
+		//Because contents is []byte type, there will be one more space after directly converted to string type, you need to replace newline with strings.
 		result := strings.Replace(string(contents), "\n", "", 1)
 		fmt.Println("Use ioutil.ReadFile to read a file:", result)
 		return result, nil

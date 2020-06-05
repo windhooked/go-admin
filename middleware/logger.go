@@ -1,12 +1,13 @@
 package middleware
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/sirupsen/logrus"
 	"go-admin/models"
 	"go-admin/tools"
 	"strings"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 //实例化
@@ -65,13 +66,13 @@ func LoggerToFile() gin.HandlerFunc {
 			sysOperLog.OperUrl = reqUri
 			if reqUri == "/login" {
 				sysOperLog.BusinessType = "10"
-				sysOperLog.Title = "用户登录"
+				sysOperLog.Title = "user login"
 				sysOperLog.OperName = "-"
 			} else if strings.Contains(reqUri, "/api/v1/logout") {
 				sysOperLog.BusinessType = "11"
 			} else if strings.Contains(reqUri, "/api/v1/getCaptcha") {
 				sysOperLog.BusinessType = "12"
-				sysOperLog.Title = "验证码"
+				sysOperLog.Title = "Captcha"
 			} else {
 				if reqMethod == "POST" {
 					sysOperLog.BusinessType = "1"

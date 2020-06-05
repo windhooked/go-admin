@@ -290,7 +290,7 @@ func InitPaths(menu *Menu) (err error) {
 	if int(menu.ParentId) != 0 {
 		orm.Eloquent.Table("sys_menu").Where("menu_id = ?", menu.ParentId).First(parentMenu)
 		if parentMenu.Paths == "" {
-			err = errors.New("父级paths异常，请尝试对当前节点父级菜单进行更新操作！")
+			err = errors.New("The parent paths are abnormal, please try to update the parent menu of the current node!")
 			return
 		}
 		menu.Paths = parentMenu.Paths + "/" + tools.IntToString(menu.MenuId)

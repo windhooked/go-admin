@@ -1,20 +1,19 @@
 settings:
   application:
-    mode: dev  # dev开发环境 test测试环境 prod线上环境
     host: 0.0.0.0
+    mode: dev
     name: testApp
-    port: 8000
+    port: "8000"
     readtimeout: 1
     writertimeout: 2
-  log:
-    dir: temp/logs
+  database:
+    dbtype: mysql
+    host: localhost
+    name: testApp
+    port: 3306
+    username: root
   jwt:
     secret: go-admin
     timeout: 3600
-  database:
-    name: goadmindb
-    dbtype: mysql
-    host: 127.0.0.1
-    password: 123456
-    port: 3306
-    username: root
+  log:
+    dir: temp/logs
