@@ -1,6 +1,6 @@
 package system
 
-import(
+import (
 	"github.com/gin-gonic/gin"
 )
 
@@ -9,7 +9,7 @@ const INDEX = `
 <html>
 <head>
 <meta charset="utf-8">
-<title>GO-ADMIN欢迎您</title>
+<title>Welcome to GO-ADMIN</title>
 <style>
 body{
   margin:0; 
@@ -17,7 +17,7 @@ body{
   overflow-y:hidden
 }
 </style>
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript"> 
 window.onerror=function(){return true;} 
 $(function(){ 
@@ -28,13 +28,16 @@ $(function(){
 </script>
 </head>
 <body>
-<iframe id="iframe" frameborder="0" src="http://doc.zhangwj.com/go-admin-site/" style="width:100%;"></iframe>
+<div>
+<h1> Welcome ! </h1>
+</div>
 </body>
 </html>
 `
 
+//<iframe id="iframe" frameborder="0" src="http://google.com" style="width:100%;"></iframe>
 
-func HelloWorld(c *gin.Context){
+func HelloWorld(c *gin.Context) {
 	c.Header("Content-Type", "text/html; charset=utf-8")
-    c.String(200, INDEX)
+	c.String(200, INDEX)
 }

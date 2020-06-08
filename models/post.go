@@ -94,7 +94,7 @@ func (e *Post) GetPage(pageSize int, pageIndex int) ([]Post, int, error) {
 		table = table.Where("status = ?", e.Status)
 	}
 
-	// 数据权限控制
+	// Data permission control
 	dataPermission := new(DataPermission)
 	dataPermission.UserId, _ = tools.StringToInt(e.DataScope)
 	table, err := dataPermission.GetDataScope("sys_post", table)
@@ -115,8 +115,8 @@ func (e *Post) Update(id int) (update Post, err error) {
 		return
 	}
 
-	//参数1:是要修改的数据
-	//参数2:是修改的数据
+	//Parameter 1: is the data to be modified
+	//Parameter 2: is the modified data
 	if err = orm.Eloquent.Table(e.TableName()).Model(&update).Updates(&e).Error; err != nil {
 		return
 	}

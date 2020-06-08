@@ -3,13 +3,14 @@ package jwtauth
 import (
 	"crypto/rsa"
 	"errors"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/gin-gonic/gin"
 	config2 "go-admin/tools/config"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
 )
 
 type MapClaims map[string]interface{}
@@ -284,7 +285,7 @@ func (mw *GinJWTMiddleware) MiddlewareInit() error {
 
 	mw.Timeout = time.Hour
 	if config2.JwtConfig.Timeout != 0 {
-		// TODO: token过期时长
+		// TODO: Duration of token expiration
 		mw.Timeout = time.Duration(config2.JwtConfig.Timeout) * time.Second
 	}
 

@@ -8,12 +8,12 @@ settings:
     writertimeout: 2
   database:
     dbtype: mysql
-    host: localhost
+    host: mysql
     name: testApp
     port: 3306
     username: root
   jwt:
-    secret: go-admin
+    secret: 8b9pkd5kyaVj0FtGuNIUunZl6zLmOAfbL1AeWBGwRjvhZ9PHU4etwoIlgdNFZpo4NMSj1j_FvFgRn5gEa433Ebuy35xwckNaKgv22sptIXC2Km
     timeout: 3600
   log:
     dir: temp/logs

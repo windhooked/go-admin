@@ -87,8 +87,8 @@ func (e *LoginLog) Update(id int) (update LoginLog, err error) {
 		return
 	}
 
-	//参数1:是要修改的数据
-	//参数2:是修改的数据
+	//Parameter 1: is the data to be modified
+	//Parameter 2: is the modified data
 	if err = orm.Eloquent.Table(e.TableName()).Model(&update).Updates(&e).Error; err != nil {
 		return
 	}

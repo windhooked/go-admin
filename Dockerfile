@@ -3,7 +3,7 @@ FROM debian:bullseye-slim
 # extract SAR archive, run ldconfig
 USER root
 WORKDIR /app
-EXPOSE 8314
+EXPOSE 8000
 
 COPY go-admin /bin
 #COPY .env /app

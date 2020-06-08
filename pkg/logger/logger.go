@@ -4,6 +4,10 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
+
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 )
 
 var (
@@ -22,4 +26,25 @@ func init() {
 	Warning = log.New(os.Stdout, "Warning:", log.Ldate|log.Ltime|log.Lshortfile)
 	Error = log.New(io.MultiWriter(os.Stderr, errFile), "Error:", log.Ldate|log.Ltime|log.Lshortfile)
 
+}
+
+func SetupLogger(consoleWriter bool) {
+	// Prod
+	zerolog.TimeFieldFormat = time.RFC3339
+	zerolog.TimestampFieldName = "created"
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	zerolog.ErrorFieldName = "message"
+	zerolog.ErrorStackMarshaler = MarshalStack
+	log.Logger = log.With().Caller().Logger()
+
+	if consoleWriter {
+		// Dev
+		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+		log.Logger = log.Output(ConsoleWriter{
+			Out:           os.Stderr,
+			NoColor:       false,
+			TimeFormat:    "2006-01-02 15:04:05",
+			MarshalIndent: true,
+		})
+	}
 }

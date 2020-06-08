@@ -1,12 +1,13 @@
 package middleware
 
 import (
-	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/rs/zerolog/log"
 )
 
 func CustomError(c *gin.Context) {
@@ -25,7 +26,7 @@ func CustomError(c *gin.Context) {
 						break
 					}
 					c.Status(statusCode)
-					fmt.Println(
+					log.Error().Msgf(
 						time.Now().Format("\n 2006-01-02 15:04:05.9999"),
 						"[ERROR]",
 						c.Request.Method,
@@ -41,6 +42,7 @@ func CustomError(c *gin.Context) {
 					})
 				}
 			default:
+				log.Debug().Msgf("%v", err)
 				panic(err)
 			}
 		}

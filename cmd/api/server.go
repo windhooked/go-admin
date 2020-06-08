@@ -3,22 +3,22 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"go-admin/database"
 	"go-admin/router"
 	"go-admin/tools"
 	config2 "go-admin/tools/config"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
-
-
 
 var (
 	config   string
@@ -42,6 +42,23 @@ func init() {
 	StartCmd.PersistentFlags().StringVarP(&config, "config", "c", "config/settings.yml", "Start server with provided configuration file")
 	StartCmd.PersistentFlags().StringVarP(&port, "port", "p", "8000", "Tcp port server listening on")
 	StartCmd.PersistentFlags().StringVarP(&mode, "mode", "m", "dev", "server mode ; eg:dev,test,prod")
+
+	zerolog.TimeFieldFormat = time.RFC3339
+	zerolog.TimestampFieldName = "created"
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	zerolog.ErrorFieldName = "message"
+	//zerolog.ErrorStackMarshaler = MarshalStack
+	log.Logger = log.With().Caller().Logger()
+
+	if os.Getenv("APP_ENV") == "" {
+		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+		log.Logger = log.Output(zerolog.ConsoleWriter{
+			Out:        os.Stderr,
+			NoColor:    false,
+			TimeFormat: "2006-01-02 15:04:05",
+			//MarshalIndent: true,
+		})
+	}
 }
 
 func usage() {
@@ -51,13 +68,12 @@ func usage() {
 
 func setup() {
 
-	//1. 读取配置
+	//1. Read configuration
 	config2.ConfigSetup(config)
-	//2. 设置日志
+	//2. Set log
 	tools.InitLogger()
-	//3. 初始化数据库链接
+	//3. Initialize the database link
 	database.Setup()
-
 
 }
 
@@ -76,35 +92,34 @@ func run() error {
 		config2.SetConfig(config, "settings.application.port", port)
 	}
 
-
 	srv := &http.Server{
 		Addr:    config2.ApplicationConfig.Host + ":" + config2.ApplicationConfig.Port,
 		Handler: r,
 	}
 
 	go func() {
-		// 服务连接
+		// Service connection
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("listen: %s\n", err)
+			log.Fatal().Msgf("listen: %s\n", err)
 		}
 	}()
 	content, _ := ioutil.ReadFile("./static/go-admin.txt")
-	log.Println(string(content))
-	log.Println("Server Run http://127.0.0.1:" + config2.ApplicationConfig.Port + "/")
-	log.Println("Swagger URL http://127.0.0.1:" + config2.ApplicationConfig.Port + "/swagger/index.html")
+	log.Info().Msgf("%v", string(content))
+	log.Info().Msgf("Server Run :%s/", config2.ApplicationConfig.Port)
+	log.Info().Msgf("Swagger URL :%s  /swagger/index.html", config2.ApplicationConfig.Port)
 
-	log.Println("Enter Control + C Shutdown Server")
-	// 等待中断信号以优雅地关闭服务器（设置 5 秒的超时时间）
+	log.Info().Msgf("Enter Control + C Shutdown Server")
+	// Wait for an interrupt signal to gracefully shut down the server (set a timeout of 5 seconds)
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
-	log.Println("Shutdown Server ...")
+	log.Info().Msgf("Shutdown Server ...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
+		log.Fatal().Msgf("Server Shutdown:", err)
 	}
-	log.Println("Server exiting")
+	log.Info().Msgf("Server exiting")
 	return nil
 }

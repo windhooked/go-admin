@@ -9,7 +9,8 @@ import (
 )
 
 func InitDb() error {
-	filePath := "config/db.sql"
+	//filePath := "config/db.sql"
+	filePath := "db.sql"
 	if config2.DatabaseConfig.Dbtype == "sqlite3" {
 		fmt.Println("sqlite3 database does not need to be initialized!")
 		return nil

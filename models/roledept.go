@@ -16,12 +16,12 @@ func (SysRoleDept) TableName() string {
 }
 
 func (rm *SysRoleDept) Insert(roleId int, deptIds []int) (bool, error) {
-	//ORM不支持批量插入所以需要拼接 sql 串
+	//ORM does not support batch insertion, so you need to splice sql string
 	sql := "INSERT INTO `sys_role_dept` (`role_id`,`dept_id`) VALUES "
 
 	for i := 0; i < len(deptIds); i++ {
 		if len(deptIds)-1 == i {
-			//最后一条数据 以分号结尾
+			//The last piece of data ends with a semicolon
 			sql += fmt.Sprintf("(%d,%d);", roleId, deptIds[i])
 		} else {
 			sql += fmt.Sprintf("(%d,%d),", roleId, deptIds[i])

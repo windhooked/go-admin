@@ -9,14 +9,14 @@ import (
 "net/http"
 )
 
-// @Summary 配置列表数据
-// @Description 获取JSON
-// @Tags 配置
+// @Summary configuration list data
+// @Description get JSON
+// @Tags configuration
 // @Param configKey query string false "configKey"
 // @Param configName query string false "configName"
 // @Param configType query string false "configType"
-// @Param pageSize query int false "页条数"
-// @Param pageIndex query int false "页码"
+// @Param pageSize query int false "Number of pages"
+// @Param pageIndex query int false "page number"
 // @Success 200 {object} models.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/configList [get]
 // @Security
@@ -57,10 +57,10 @@ func Get{{.ClassName}}List(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 获取配置
-// @Description 获取JSON
-// @Tags 配置
-// @Param configId path int true "配置编码"
+// @Summary get configuration
+// @Description get JSON
+// @Tags configuration
+// @Param configId path int true "configuration encoding"
 // @Success 200 {object} models.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/config/{configId} [get]
 // @Security
@@ -68,7 +68,7 @@ func Get{{.ClassName}}(c *gin.Context) {
 	var data models.{{.ClassName}}
 	data.{{.PkGoField}}, _ = utils.StringToInt(c.Param("{{.PkJsonField}}"))
 	result, err := data.Get()
-	pkg.HasError(err, "抱歉未找到相关信息", -1)
+    pkg.HasError(err, "Sorry no relevant information was found", -1)
 
 	var res models.Response
 	res.Data = result
@@ -76,14 +76,14 @@ func Get{{.ClassName}}(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 添加配置
-// @Description 获取JSON
-// @Tags 配置
+// @Summary add configuration
+// @Description get JSON
+// @Tags configuration
 // @Accept  application/json
 // @Product application/json
 // @Param data body models.{{.ClassName}} true "data"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/dict/data [post]
 // @Security Bearer
 func Insert{{.ClassName}}(c *gin.Context) {
@@ -103,7 +103,7 @@ func Insert{{.ClassName}}(c *gin.Context) {
 func Update{{.ClassName}}(c *gin.Context) {
 	var data models.{{.ClassName}}
 	err := c.BindWith(&data, binding.JSON)
-	pkg.HasError(err, "数据解析失败", -1)
+    pkg.HasError(err, "Data analysis failed", -1)
 	data.UpdateBy = utils.GetUserIdStr(c)
 	result, err := data.Update(data.{{.PkGoField}})
 	pkg.HasError(err, "", -1)
@@ -118,9 +118,9 @@ func Delete{{.ClassName}}(c *gin.Context) {
 	id, err := utils.StringToInt(c.Param("{{.PkJsonField}}"))
 	data.UpdateBy = utils.GetUserIdStr(c)
 	_, err = data.Delete(id)
-	pkg.HasError(err, "修改失败", 500)
+    pkg.HasError(err, "Modify failed", 500)
 
 	var res models.Response
-	res.Msg = "删除成功"
+    res.Msg = "Successfully deleted"
 	c.JSON(http.StatusOK, res.ReturnOK())
 }

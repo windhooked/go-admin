@@ -29,7 +29,7 @@ func (e *DictType) Create() (DictType, error) {
 	i := 0
 	orm.Eloquent.Table(e.TableName()).Where("dict_name=? or dict_type = ?", e.DictName, e.DictType).Count(&i)
 	if i > 0 {
-		return doc, errors.New("字典名称或者字典类型已经存在！")
+		return doc, errors.New("Dictionary name or dictionary type already exists!")
 	}
 
 	result := orm.Eloquent.Table(e.TableName()).Create(&e)
@@ -92,7 +92,7 @@ func (e *DictType) GetPage(pageSize int, pageIndex int) ([]DictType, int, error)
 		table = table.Where("dict_name = ?", e.DictName)
 	}
 
-	// 数据权限控制
+	// Data permission control
 	dataPermission := new(DataPermission)
 	dataPermission.UserId, _ = tools.StringToInt(e.DataScope)
 	table, err := dataPermission.GetDataScope("sys_dict_type", table)
@@ -114,15 +114,15 @@ func (e *DictType) Update(id int) (update DictType, err error) {
 	}
 
 	if e.DictName != "" && e.DictName != update.DictName {
-		return update, errors.New("名称不允许修改！")
+		return update, errors.New("The name is not allowed to be modified!")
 	}
 
 	if e.DictType != "" && e.DictType != update.DictType {
-		return update, errors.New("类型不允许修改！")
+		return update, errors.New("The type is not allowed to be modified!")
 	}
 
-	//参数1:是要修改的数据
-	//参数2:是修改的数据
+	//Parameter 1: is the data to be modified
+	//Parameter 2: is the modified data
 	if err = orm.Eloquent.Table(e.TableName()).Model(&update).Updates(&e).Error; err != nil {
 		return
 	}

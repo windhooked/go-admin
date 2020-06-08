@@ -1,22 +1,23 @@
 package log
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 	"go-admin/models"
 	"go-admin/tools"
 	"go-admin/tools/app"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 )
 
-// @Summary 登录日志列表
-// @Description 获取JSON
-// @Tags 登录日志
+// @Summary login log list
+// @Description get JSON
+// @Tags login log
 // @Param status query string false "status"
 // @Param dictCode query string false "dictCode"
 // @Param dictType query string false "dictType"
-// @Param pageSize query int false "页条数"
-// @Param pageIndex query int false "页码"
+// @Param pageSize query int false "Number of pages"
+// @Param pageIndex query int false "page number"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/loginloglist [get]
 // @Security
@@ -53,9 +54,9 @@ func GetLoginLogList(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 通过编码获取登录日志
-// @Description 获取JSON
-// @Tags 登录日志
+// @Summary gets the login log by coding
+// @Description get JSON
+// @Tags login log
 // @Param infoId path int true "infoId"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/loginlog/{infoId} [get]
@@ -64,21 +65,21 @@ func GetLoginLog(c *gin.Context) {
 	var LoginLog models.LoginLog
 	LoginLog.InfoId, _ = tools.StringToInt(c.Param("infoId"))
 	result, err := LoginLog.Get()
-	tools.HasError(err, "抱歉未找到相关信息", -1)
+	tools.HasError(err, "Sorry no relevant information was found", -1)
 
 	var res app.Response
 	res.Data = result
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 添加登录日志
-// @Description 获取JSON
-// @Tags 登录日志
+// @Summary add login log
+// @Description get JSON
+// @Tags login log
 // @Accept  application/json
 // @Product application/json
 // @Param data body models.LoginLog true "data"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/loginlog [post]
 // @Security Bearer
 func InsertLoginLog(c *gin.Context) {
@@ -92,14 +93,14 @@ func InsertLoginLog(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 修改登录日志
-// @Description 获取JSON
-// @Tags 登录日志
+// @Summary modify login log
+// @Description get JSON
+// @Tags login log
 // @Accept  application/json
 // @Product application/json
 // @Param data body models.LoginLog true "body"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/loginlog [put]
 // @Security Bearer
 func UpdateLoginLog(c *gin.Context) {
@@ -113,20 +114,20 @@ func UpdateLoginLog(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 批量删除登录日志
-// @Description 删除数据
-// @Tags 登录日志
-// @Param infoId path string true "以逗号（,）分割的infoId"
-// @Success 200 {string} string	"{"code": 200, "message": "删除成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "删除失败"}"
+// @Summary delete login logs in batch
+// @Description delete data
+// @Tags login log
+// @Param infoId path string true "infoId separated by comma (,)"
+// @Success 200 {string} string "{"code": 200, "message": "Successfully deleted"}"
+// @Success 200 {string} string "{"code": -1, "message": "Deletion failed"}"
 // @Router /api/v1/loginlog/{infoId} [delete]
 func DeleteLoginLog(c *gin.Context) {
 	var data models.LoginLog
 	data.UpdateBy = tools.GetUserIdStr(c)
 	IDS := tools.IdsStrToIdsIntGroup("infoId", c)
 	_, err := data.BatchDelete(IDS)
-	tools.HasError(err, "修改失败", 500)
+	tools.HasError(err, "Modification failed", 500)
 	var res app.Response
-	res.Msg = "删除成功"
+	res.Msg = "Successfully deleted"
 	c.JSON(http.StatusOK, res.ReturnOK())
 }

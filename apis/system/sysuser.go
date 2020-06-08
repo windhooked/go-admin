@@ -1,21 +1,22 @@
 package system
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
-	"github.com/google/uuid"
 	"go-admin/models"
 	"go-admin/tools"
 	"go-admin/tools/app"
 	"log"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/google/uuid"
 )
 
-// @Summary 列表数据
-// @Description 获取JSON
+// @Summary list data
+// @Description get JSON
 // @Tags 用户
 // @Param username query string false "username"
 // @Success 200 {string} string "{"code": 200, "data": [...]}"
-// @Success 200 {string} string "{"code": -1, "message": "抱歉未找到相关信息"}"
+// @Success 200 {string} string "{"code": -1, "message": "Sorry no relevant information was found"}"
 // @Router /api/v1/sysUserList [get]
 // @Security Bearer
 func GetSysUserList(c *gin.Context) {
@@ -51,10 +52,10 @@ func GetSysUserList(c *gin.Context) {
 	app.PageOK(c, result, count, pageIndex, pageSize, "")
 }
 
-// @Summary 获取用户
-// @Description 获取JSON
-// @Tags 用户
-// @Param userId path int true "用户编码"
+// @Summary get user
+// @Description get JSON
+// @Tags user
+// @Param userId path int true "user code"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/sysUser/{userId} [get]
 // @Security
@@ -62,7 +63,7 @@ func GetSysUser(c *gin.Context) {
 	var SysUser models.SysUser
 	SysUser.UserId, _ = tools.StringToInt(c.Param("userId"))
 	result, err := SysUser.Get()
-	tools.HasError(err, "抱歉未找到相关信息", -1)
+	tools.HasError(err, "Sorry no relevant information was found", -1)
 	var SysRole models.SysRole
 	var Post models.Post
 	roles, err := SysRole.GetList()
@@ -83,9 +84,9 @@ func GetSysUser(c *gin.Context) {
 	})
 }
 
-// @Summary 获取当前登录用户
-// @Description 获取JSON
-// @Tags 个人中心
+// @Summary gets the currently logged in user
+// @Description get JSON
+// @Tags Personal Center
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/user/profile [get]
 // @Security
@@ -94,15 +95,15 @@ func GetSysUserProfile(c *gin.Context) {
 	userId := tools.GetUserIdStr(c)
 	SysUser.UserId, _ = tools.StringToInt(userId)
 	result, err := SysUser.Get()
-	tools.HasError(err, "抱歉未找到相关信息", -1)
+	tools.HasError(err, "Sorry no relevant information was found", -1)
 	var SysRole models.SysRole
 	var Post models.Post
 	var Dept models.Dept
-	//获取角色列表
+	//Get the role list
 	roles, err := SysRole.GetList()
-	//获取职位列表
+	//Get the job list
 	posts, err := Post.GetList()
-	//获取部门列表
+	//Get the department list
 	Dept.DeptId = result.DeptId
 	dept, err := Dept.Get()
 
@@ -123,9 +124,9 @@ func GetSysUserProfile(c *gin.Context) {
 	})
 }
 
-// @Summary 获取用户角色和职位
-// @Description 获取JSON
-// @Tags 用户
+// @Summary Get user roles and positions
+// @Description get JSON
+// @Tags user
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/sysUser [get]
 // @Security
@@ -134,75 +135,75 @@ func GetSysUserInit(c *gin.Context) {
 	var Post models.Post
 	roles, err := SysRole.GetList()
 	posts, err := Post.GetList()
-	tools.HasError(err, "抱歉未找到相关信息", -1)
+	tools.HasError(err, "Sorry no relevant information was found", -1)
 	mp := make(map[string]interface{}, 2)
 	mp["roles"] = roles
 	mp["posts"] = posts
 	app.OK(c, mp, "")
 }
 
-// @Summary 创建用户
-// @Description 获取JSON
-// @Tags 用户
+// @Summary create user
+// @Description get JSON
+// @Tags user
 // @Accept  application/json
 // @Product application/json
-// @Param data body models.SysUser true "用户数据"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Param data body models.SysUser true "user data"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/sysUser [post]
 func InsertSysUser(c *gin.Context) {
 	var sysuser models.SysUser
 	err := c.BindWith(&sysuser, binding.JSON)
-	tools.HasError(err, "非法数据格式", 500)
+	tools.HasError(err, "Illegal data format", 500)
 
 	sysuser.CreateBy = tools.GetUserIdStr(c)
 	id, err := sysuser.Insert()
-	tools.HasError(err, "添加失败", 500)
-	app.OK(c, id, "添加成功")
+	tools.HasError(err, "Add failed", 500)
+	app.OK(c, id, "added successfully")
 }
 
-// @Summary 修改用户数据
-// @Description 获取JSON
-// @Tags 用户
+// @Summary modify user data
+// @Description get JSON
+// @Tags user
 // @Accept  application/json
 // @Product application/json
 // @Param data body models.SysUser true "body"
-// @Success 200 {string} string	"{"code": 200, "message": "修改成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "修改失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Modified successfully"}"
+// @Success 200 {string} string "{"code": -1, "message": "Modification failed"}"
 // @Router /api/v1/sysuser/{userId} [put]
 func UpdateSysUser(c *gin.Context) {
 	var data models.SysUser
 	err := c.Bind(&data)
-	tools.HasError(err, "数据解析失败", -1)
+	tools.HasError(err, "Data parsing failed", -1)
 	data.UpdateBy = tools.GetUserIdStr(c)
 	result, err := data.Update(data.UserId)
-	tools.HasError(err, "修改失败", 500)
-	app.OK(c, result, "修改成功")
+	tools.HasError(err, "Modification failed", 500)
+	app.OK(c, result, "Modified successfully")
 }
 
-// @Summary 删除用户数据
-// @Description 删除数据
-// @Tags 用户
+// @Summary delete user data
+// @Description delete data
+// @Tags user
 // @Param userId path int true "userId"
-// @Success 200 {string} string	"{"code": 200, "message": "删除成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "删除失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Successfully deleted"}"
+// @Success 200 {string} string "{"code": -1, "message": "Deletion failed"}"
 // @Router /api/v1/sysuser/{userId} [delete]
 func DeleteSysUser(c *gin.Context) {
 	var data models.SysUser
 	data.UpdateBy = tools.GetUserIdStr(c)
 	IDS := tools.IdsStrToIdsIntGroup("userId", c)
 	result, err := data.BatchDelete(IDS)
-	tools.HasError(err, "删除失败", 500)
-	app.OK(c, result, "删除成功")
+	tools.HasError(err, "Deletion failed", 500)
+	app.OK(c, result, "Delete successfully")
 }
 
-// @Summary 修改头像
-// @Description 获取JSON
-// @Tags 用户
+// @Summary modify avatar
+// @Description get JSON
+// @Tags user
 // @Accept multipart/form-data
 // @Param file formData file true "file"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/user/profileAvatar [post]
 func InsetSysUserAvatar(c *gin.Context) {
 	form, _ := c.MultipartForm()
@@ -211,7 +212,7 @@ func InsetSysUserAvatar(c *gin.Context) {
 	filPath := "static/uploadfile/" + guid + ".jpg"
 	for _, file := range files {
 		log.Println(file.Filename)
-		// 上传文件至指定目录
+		// Upload the file to the specified directory
 		_ = c.SaveUploadedFile(file, filPath)
 	}
 	sysuser := models.SysUser{}
@@ -219,15 +220,15 @@ func InsetSysUserAvatar(c *gin.Context) {
 	sysuser.Avatar = "/" + filPath
 	sysuser.UpdateBy = tools.GetUserIdStr(c)
 	sysuser.Update(sysuser.UserId)
-	app.OK(c, filPath, "修改成功")
+	app.OK(c, filPath, "Modified successfully")
 }
 
 func SysUserUpdatePwd(c *gin.Context) {
 	var pwd models.SysUserPwd
 	err := c.Bind(&pwd)
-	tools.HasError(err, "数据解析失败", 500)
+	tools.HasError(err, "Data analysis failed", 500)
 	sysuser := models.SysUser{}
 	sysuser.UserId = tools.GetUserId(c)
 	sysuser.SetPwd(pwd)
-	app.OK(c, "", "密码修改成功")
+	app.OK(c, "", "Password changed successfully")
 }

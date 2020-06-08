@@ -2,8 +2,9 @@ package models
 
 import (
 	"errors"
-	"github.com/jinzhu/gorm"
 	"go-admin/tools"
+
+	"github.com/jinzhu/gorm"
 )
 
 type DataPermission struct {
@@ -19,12 +20,12 @@ func (e *DataPermission) GetDataScope(tbname string, table *gorm.DB) (*gorm.DB, 
 	SysUser.UserId = e.UserId
 	user, err := SysUser.Get()
 	if err != nil {
-		return nil, errors.New("获取用户数据出错 msg:" + err.Error())
+		return nil, errors.New("Error getting user data msg:" + err.Error())
 	}
 	SysRole.RoleId = user.RoleId
 	role, err := SysRole.Get()
 	if err != nil {
-		return nil, errors.New("获取用户数据出错 msg:" + err.Error())
+		return nil, errors.New("Error getting user data msg:" + err.Error())
 	}
 	if role.DataScope == "2" {
 		table = table.Where(tbname+".create_by in (select sys_user.user_id from sys_role_dept left join sys_user on sys_user.dept_id=sys_role_dept.dept_id where sys_role_dept.role_id = ?)", user.RoleId)

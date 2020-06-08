@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "基于Gin + Vue + Element UI的前后端分离权限管理系统的接口文档\n添加qq群: 74520518 进入技术交流群 请备注，谢谢！",
+        "description": "The interface documentation of the front and back end separate permission management system based on Gin + Vue + Element UI\nAdd qq group: 74520518 Enter the technical exchange group Please note, thank you!",
         "title": "go-admin API",
         "contact": {},
         "license": {
@@ -18,14 +18,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "配置"
+                    "configuration"
                 ],
-                "summary": "修改配置",
+                "summary": "modify configuration",
                 "parameters": [
                     {
                         "description": "body",
@@ -39,7 +39,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -54,15 +54,15 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "配置"
+                    "configuration"
                 ],
-                "summary": "获取配置",
+                "summary": "get configuration",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "配置编码",
+                        "description": "configuration encoding",
                         "name": "configId",
                         "in": "path",
                         "required": true
@@ -78,11 +78,11 @@
                 }
             },
             "delete": {
-                "description": "删除数据",
+                "description": "delete data",
                 "tags": [
-                    "配置"
+                    "configuration"
                 ],
-                "summary": "删除配置",
+                "summary": "delete configuration",
                 "parameters": [
                     {
                         "type": "integer",
@@ -94,7 +94,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -109,11 +109,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "配置"
+                    "configuration"
                 ],
-                "summary": "获取配置",
+                "summary": "get configuration",
                 "parameters": [
                     {
                         "type": "integer",
@@ -140,11 +140,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "配置"
+                    "configuration"
                 ],
-                "summary": "配置列表数据",
+                "summary": "configuration list data",
                 "parameters": [
                     {
                         "type": "string",
@@ -166,13 +166,13 @@
                     },
                     {
                         "type": "integer",
-                        "description": "页条数",
+                        "description": "Number of pages",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "页码",
+                        "description": "page number",
                         "name": "pageIndex",
                         "in": "query"
                     }
@@ -189,27 +189,27 @@
         },
         "/api/v1/db/columns/page": {
             "get": {
-                "description": "数据库表列分页列表 / database table column page list",
+                "description": "database table column page list / database table column page list",
                 "tags": [
-                    "工具 / Tools"
+                    "tools / Tools"
                 ],
-                "summary": "分页列表数据 / page list data",
+                "summary": "page list data / page list data",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "tableName / 数据表名称",
+                        "description": "tableName / data table name",
                         "name": "tableName",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "pageSize / 页条数",
+                        "description": "pageSize / number of pages",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "pageIndex / 页码",
+                        "description": "pageIndex / page number",
                         "name": "pageIndex",
                         "in": "query"
                     }
@@ -226,27 +226,27 @@
         },
         "/api/v1/db/tables/page": {
             "get": {
-                "description": "数据库表分页列表 / database table page list",
+                "description": "database table page list / database table page list",
                 "tags": [
-                    "工具 / Tools"
+                    "tools / Tools"
                 ],
-                "summary": "分页列表数据 / page list data",
+                "summary": "page list data / page list data",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "tableName / 数据表名称",
+                        "description": "tableName / data table name",
                         "name": "tableName",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "pageSize / 页条数",
+                        "description": "pageSize / number of pages",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "pageIndex / 页码",
+                        "description": "pageIndex / page number",
                         "name": "pageIndex",
                         "in": "query"
                     }
@@ -483,14 +483,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "字典数据"
+                    "configuration"
                 ],
-                "summary": "添加字典数据",
+                "summary": "add configuration",
                 "parameters": [
                     {
                         "description": "data",
@@ -498,13 +498,13 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.DictType"
+                            "$ref": "#/definitions/models.SysConfig"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -838,14 +838,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "登录日志"
+                    "login log"
                 ],
-                "summary": "修改登录日志",
+                "summary": "modify login log",
                 "parameters": [
                     {
                         "description": "body",
@@ -859,7 +859,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -872,14 +872,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "登录日志"
+                    "login log"
                 ],
-                "summary": "添加登录日志",
+                "summary": "add login log",
                 "parameters": [
                     {
                         "description": "data",
@@ -893,7 +893,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -908,11 +908,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "登录日志"
+                    "login log"
                 ],
-                "summary": "通过编码获取登录日志",
+                "summary": "gets the login log by coding",
                 "parameters": [
                     {
                         "type": "integer",
@@ -932,15 +932,15 @@
                 }
             },
             "delete": {
-                "description": "删除数据",
+                "description": "delete data",
                 "tags": [
-                    "登录日志"
+                    "login log"
                 ],
-                "summary": "批量删除登录日志",
+                "summary": "delete login logs in batch",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "以逗号（,）分割的infoId",
+                        "description": "infoId separated by comma (,)",
                         "name": "infoId",
                         "in": "path",
                         "required": true
@@ -948,7 +948,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -963,11 +963,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "登录日志"
+                    "login log"
                 ],
-                "summary": "登录日志列表",
+                "summary": "login log list",
                 "parameters": [
                     {
                         "type": "string",
@@ -989,13 +989,13 @@
                     },
                     {
                         "type": "integer",
-                        "description": "页条数",
+                        "description": "Number of pages",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "页码",
+                        "description": "page number",
                         "name": "pageIndex",
                         "in": "query"
                     }
@@ -1017,11 +1017,11 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "菜单"
+                    "menu"
                 ],
-                "summary": "Menu列表数据",
+                "summary": "Menu list data",
                 "parameters": [
                     {
                         "type": "string",
@@ -1032,7 +1032,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"抱歉未找到相关信息\"}",
+                        "description": "{\"code\": -1, \"message\": \"Sorry no relevant information was found\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1045,14 +1045,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/x-www-form-urlencoded"
                 ],
                 "tags": [
-                    "菜单"
+                    "menu"
                 ],
-                "summary": "创建菜单",
+                "summary": "create menu",
                 "parameters": [
                     {
                         "type": "string",
@@ -1098,7 +1098,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1113,14 +1113,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/x-www-form-urlencoded"
                 ],
                 "tags": [
-                    "菜单"
+                    "menu"
                 ],
-                "summary": "修改菜单",
+                "summary": "modify the menu",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1141,7 +1141,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"修改失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Modification failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1149,11 +1149,11 @@
                 }
             },
             "delete": {
-                "description": "删除数据",
+                "description": "delete data",
                 "tags": [
-                    "菜单"
+                    "menu"
                 ],
-                "summary": "删除菜单",
+                "summary": "delete menu",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1165,7 +1165,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1180,17 +1180,17 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/x-www-form-urlencoded"
                 ],
                 "tags": [
-                    "菜单"
+                    "menu"
                 ],
-                "summary": "获取菜单树",
+                "summary": "get the menu tree",
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1205,11 +1205,11 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "菜单"
+                    "menu"
                 ],
-                "summary": "获取角色对应的菜单id数组",
+                "summary": "gets the menu id array corresponding to the role",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1221,7 +1221,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"抱歉未找到相关信息\"}",
+                        "description": "{\"code\": -1, \"message\": \"Sorry no relevant information was found\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1236,11 +1236,11 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "菜单"
+                    "menu"
                 ],
-                "summary": "Menu列表数据",
+                "summary": "Menu list data",
                 "parameters": [
                     {
                         "type": "string",
@@ -1251,7 +1251,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"抱歉未找到相关信息\"}",
+                        "description": "{\"code\": -1, \"message\": \"Sorry no relevant information was found\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1266,11 +1266,11 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "菜单"
+                    "menu"
                 ],
-                "summary": "根据角色名称获取菜单列表数据（左菜单使用）",
+                "summary": "gets menu list data based on the role name (used in the left menu)",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1282,7 +1282,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"抱歉未找到相关信息\"}",
+                        "description": "{\"code\": -1, \"message\": \"Sorry no relevant information was found\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1297,14 +1297,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "操作日志"
+                    "operation log"
                 ],
-                "summary": "添加操作日志",
+                "summary": "add operation log",
                 "parameters": [
                     {
                         "description": "data",
@@ -1318,7 +1318,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1333,11 +1333,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "登录日志"
+                    "login log"
                 ],
-                "summary": "通过编码获取登录日志",
+                "summary": "gets the login log by coding",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1359,15 +1359,15 @@
         },
         "/api/v1/operlog/{operId}": {
             "delete": {
-                "description": "删除数据",
+                "description": "delete data",
                 "tags": [
-                    "操作日志"
+                    "operation log"
                 ],
-                "summary": "批量删除操作日志",
+                "summary": "bulk delete operation logs",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "以逗号（,）分割的operId",
+                        "description": "operId separated by comma (,)",
                         "name": "operId",
                         "in": "path",
                         "required": true
@@ -1375,7 +1375,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1390,11 +1390,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "登录日志"
+                    "login log"
                 ],
-                "summary": "登录日志列表",
+                "summary": "login log list",
                 "parameters": [
                     {
                         "type": "string",
@@ -1416,13 +1416,13 @@
                     },
                     {
                         "type": "integer",
-                        "description": "页条数",
+                        "description": "Number of pages",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "页码",
+                        "description": "page number",
                         "name": "pageIndex",
                         "in": "query"
                     }
@@ -1444,11 +1444,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "职位"
+                    "position"
                 ],
-                "summary": "职位列表数据",
+                "summary": "job listing data",
                 "parameters": [
                     {
                         "type": "string",
@@ -1484,14 +1484,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "职位"
+                    "position"
                 ],
-                "summary": "添加职位",
+                "summary": "add job",
                 "parameters": [
                     {
                         "description": "data",
@@ -1505,7 +1505,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1520,14 +1520,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "职位"
+                    "position"
                 ],
-                "summary": "修改职位",
+                "summary": "modify position",
                 "parameters": [
                     {
                         "description": "body",
@@ -1541,7 +1541,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1556,11 +1556,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "字典数据"
+                    "dictionary data"
                 ],
-                "summary": "获取字典数据",
+                "summary": "get dictionary data",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1580,11 +1580,11 @@
                 }
             },
             "delete": {
-                "description": "删除数据",
+                "description": "delete data",
                 "tags": [
-                    "职位"
+                    "position"
                 ],
-                "summary": "删除职位",
+                "summary": "delete job",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1596,7 +1596,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1611,11 +1611,11 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "角色/Role"
+                    "role/Role"
                 ],
-                "summary": "获取Role数据",
+                "summary": "get Role data",
                 "parameters": [
                     {
                         "type": "string",
@@ -1626,7 +1626,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"抱歉未找到相关信息\"}",
+                        "description": "{\"code\": -1, \"message\": \"Sorry no relevant information was found\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1634,14 +1634,14 @@
                 }
             },
             "put": {
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "角色/Role"
+                    "role/Role"
                 ],
-                "summary": "修改用户角色",
+                "summary": "modify user role",
                 "parameters": [
                     {
                         "description": "body",
@@ -1655,7 +1655,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"修改失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Modification failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1663,14 +1663,14 @@
                 }
             },
             "post": {
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "角色/Role"
+                    "role/Role"
                 ],
-                "summary": "创建角色",
+                "summary": "creates a character",
                 "parameters": [
                     {
                         "description": "data",
@@ -1684,7 +1684,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1694,11 +1694,11 @@
         },
         "/api/v1/role/{roleId}": {
             "delete": {
-                "description": "删除数据",
+                "description": "delete data",
                 "tags": [
-                    "角色/Role"
+                    "role/Role"
                 ],
-                "summary": "删除用户角色",
+                "summary": "delete user role",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1710,7 +1710,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1727,9 +1727,9 @@
                 ],
                 "description": "Get JSON",
                 "tags": [
-                    "角色/Role"
+                    "role/Role"
                 ],
-                "summary": "角色列表数据",
+                "summary": "role list data",
                 "parameters": [
                     {
                         "type": "string",
@@ -1751,13 +1751,13 @@
                     },
                     {
                         "type": "integer",
-                        "description": "页条数",
+                        "description": "Number of pages",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "页码",
+                        "description": "page number",
                         "name": "pageIndex",
                         "in": "query"
                     }
@@ -1779,11 +1779,11 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "角色菜单"
+                    "character menu"
                 ],
-                "summary": "RoleMenu列表数据",
+                "summary": "RoleMenu list data",
                 "parameters": [
                     {
                         "type": "string",
@@ -1794,7 +1794,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"抱歉未找到相关信息\"}",
+                        "description": "{\"code\": -1, \"message\": \"Sorry no relevant information was found\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1804,11 +1804,11 @@
         },
         "/api/v1/rolemenu/{id}": {
             "delete": {
-                "description": "删除数据",
+                "description": "delete data",
                 "tags": [
-                    "角色菜单"
+                    "character menu"
                 ],
-                "summary": "删除用户菜单数据",
+                "summary": "delete user menu data",
                 "parameters": [
                     {
                         "type": "string",
@@ -1826,7 +1826,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1841,14 +1841,14 @@
                         "Bearer": []
                     }
                 ],
-                "description": "修改表结构",
+                "description": "modify the table structure",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "工具 - 生成表"
+                    "tool-generate table"
                 ],
-                "summary": "修改表结构",
+                "summary": "modify the table structure",
                 "parameters": [
                     {
                         "description": "body",
@@ -1862,7 +1862,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1875,25 +1875,25 @@
                         "Bearer": []
                     }
                 ],
-                "description": "添加表结构",
+                "description": "add table structure",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "工具 - 生成表"
+                    "tool-generate table"
                 ],
-                "summary": "添加表结构",
+                "summary": "add table structure",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "tableName / 数据表名称",
+                        "description": "tableName / data table name",
                         "name": "tables",
                         "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1908,11 +1908,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "工具 - 生成表"
+                    "tool-generate table"
                 ],
-                "summary": "获取配置",
+                "summary": "get configuration",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1932,11 +1932,11 @@
                 }
             },
             "delete": {
-                "description": "删除表结构",
+                "description": "delete table structure",
                 "tags": [
-                    "工具 - 生成表"
+                    "tool-generate table"
                 ],
-                "summary": "删除表结构",
+                "summary": "delete the table structure",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1948,7 +1948,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1958,27 +1958,27 @@
         },
         "/api/v1/sys/tables/page": {
             "get": {
-                "description": "生成表分页列表",
+                "description": "generates a table pagination list",
                 "tags": [
-                    "工具 - 生成表"
+                    "tool-generate table"
                 ],
-                "summary": "分页列表数据",
+                "summary": "paging list data",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "tableName / 数据表名称",
+                        "description": "tableName / data table name",
                         "name": "tableName",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "pageSize / 页条数",
+                        "description": "pageSize / number of pages",
                         "name": "pageSize",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "pageIndex / 页码",
+                        "description": "pageIndex / page number",
                         "name": "pageIndex",
                         "in": "query"
                     }
@@ -2000,11 +2000,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "用户"
+                    "user"
                 ],
-                "summary": "获取用户角色和职位",
+                "summary": "Get user roles and positions",
                 "responses": {
                     "200": {
                         "description": "{\"code\": 200, \"data\": [...]}",
@@ -2015,17 +2015,17 @@
                 }
             },
             "post": {
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "用户"
+                    "user"
                 ],
-                "summary": "创建用户",
+                "summary": "create user",
                 "parameters": [
                     {
-                        "description": "用户数据",
+                        "description": "user data",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -2036,7 +2036,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -2051,15 +2051,15 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "用户"
+                    "user"
                 ],
-                "summary": "获取用户",
+                "summary": "get user",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "用户编码",
+                        "description": "user code",
                         "name": "userId",
                         "in": "path",
                         "required": true
@@ -2082,11 +2082,11 @@
                         "Bearer": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
                     "用户"
                 ],
-                "summary": "列表数据",
+                "summary": "list data",
                 "parameters": [
                     {
                         "type": "string",
@@ -2097,7 +2097,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"抱歉未找到相关信息\"}",
+                        "description": "{\"code\": -1, \"message\": \"Sorry no relevant information was found\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -2107,14 +2107,14 @@
         },
         "/api/v1/sysuser/{userId}": {
             "put": {
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "用户"
+                    "user"
                 ],
-                "summary": "修改用户数据",
+                "summary": "modify user data",
                 "parameters": [
                     {
                         "description": "body",
@@ -2128,7 +2128,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"修改失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Modification failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -2136,11 +2136,11 @@
                 }
             },
             "delete": {
-                "description": "删除数据",
+                "description": "delete data",
                 "tags": [
-                    "用户"
+                    "user"
                 ],
-                "summary": "删除用户数据",
+                "summary": "delete user data",
                 "parameters": [
                     {
                         "type": "integer",
@@ -2152,7 +2152,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Deletion failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -2167,11 +2167,11 @@
                         "": []
                     }
                 ],
-                "description": "获取JSON",
+                "description": "get JSON",
                 "tags": [
-                    "个人中心"
+                    "Personal Center"
                 ],
-                "summary": "获取当前登录用户",
+                "summary": "gets the currently logged in user",
                 "responses": {
                     "200": {
                         "description": "{\"code\": 200, \"data\": [...]}",
@@ -2184,14 +2184,14 @@
         },
         "/api/v1/user/profileAvatar": {
             "post": {
-                "description": "获取JSON",
+                "description": "get JSON",
                 "consumes": [
                     "multipart/form-data"
                 ],
                 "tags": [
-                    "用户"
+                    "user"
                 ],
-                "summary": "修改头像",
+                "summary": "modify avatar",
                 "parameters": [
                     {
                         "type": "file",
@@ -2203,7 +2203,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"添加失败\"}",
+                        "description": "{\"code\": -1, \"message\": \"Add failed\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -2213,11 +2213,11 @@
         },
         "/login": {
             "post": {
-                "description": "获取token",
+                "description": "get token",
                 "consumes": [
                     "application/json"
                 ],
-                "summary": "登陆",
+                "summary": "login",
                 "parameters": [
                     {
                         "description": "Add account",

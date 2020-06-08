@@ -2,10 +2,11 @@ package tools
 
 import (
 	"errors"
-	log "github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
 	"os"
 	"time"
+
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 func InitLogger() {
@@ -46,7 +47,7 @@ func (p *logFileWriter) Write(data []byte) (n int, err error) {
 	}
 	n, e := p.file.Write(data)
 	p.size += int64(n)
-	//每天一个文件
+	//One file per day
 	if p.file.Name() != viper.GetString("logger.dir")+"/api-"+time.Now().Format("2006-01-02")+".log" {
 		p.file.Close()
 		p.file, _ = os.OpenFile(viper.GetString("logger.dir")+"/api-"+time.Now().Format("2006-01-02")+".log", os.O_WRONLY|os.O_APPEND|os.O_CREATE|os.O_SYNC, 0600)

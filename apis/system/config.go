@@ -1,23 +1,24 @@
 package system
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 	"go-admin/models"
 	"go-admin/tools"
 	"go-admin/tools/app"
 	"go-admin/tools/app/msg"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 )
 
-// @Summary 配置列表数据
-// @Description 获取JSON
-// @Tags 配置
+// @Summary configuration list data
+// @Description get JSON
+// @Tags configuration
 // @Param configKey query string false "configKey"
 // @Param configName query string false "configName"
 // @Param configType query string false "configType"
-// @Param pageSize query int false "页条数"
-// @Param pageIndex query int false "页码"
+// @Param pageSize query int false "Number of pages"
+// @Param pageIndex query int false "page number"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/configList [get]
 // @Security
@@ -54,10 +55,10 @@ func GetConfigList(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 获取配置
-// @Description 获取JSON
-// @Tags 配置
-// @Param configId path int true "配置编码"
+// @Summary get configuration
+// @Description get JSON
+// @Tags configuration
+// @Param configId path int true "configuration encoding"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/config/{configId} [get]
 // @Security
@@ -65,7 +66,7 @@ func GetConfig(c *gin.Context) {
 	var Config models.SysConfig
 	Config.ConfigId, _ = tools.StringToInt(c.Param("configId"))
 	result, err := Config.Get()
-	tools.HasError(err, "抱歉未找到相关信息", -1)
+	tools.HasError(err, "Sorry no relevant information was found", -1)
 
 	var res app.Response
 	res.Data = result
@@ -73,9 +74,9 @@ func GetConfig(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 获取配置
-// @Description 获取JSON
-// @Tags 配置
+// @Summary get configuration
+// @Description get JSON
+// @Tags configuration
 // @Param configKey path int true "configKey"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/configKey/{configKey} [get]
@@ -84,19 +85,19 @@ func GetConfigByConfigKey(c *gin.Context) {
 	var Config models.SysConfig
 	Config.ConfigKey = c.Param("configKey")
 	result, err := Config.Get()
-	tools.HasError(err, "抱歉未找到相关信息", -1)
+	tools.HasError(err, "Sorry no relevant information was found", -1)
 
-	app.OK(c, result,result.ConfigValue)
+	app.OK(c, result, result.ConfigValue)
 }
 
-// @Summary 添加配置
-// @Description 获取JSON
-// @Tags 配置
+// @Summary add configuration
+// @Description get JSON
+// @Tags configuration
 // @Accept  application/json
 // @Product application/json
 // @Param data body models.SysConfig true "data"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/dict/data [post]
 // @Security Bearer
 func InsertConfig(c *gin.Context) {
@@ -107,43 +108,41 @@ func InsertConfig(c *gin.Context) {
 	result, err := data.Create()
 	tools.HasError(err, "", -1)
 
-	app.OK(c, result,"")
+	app.OK(c, result, "")
 }
 
-// @Summary 修改配置
-// @Description 获取JSON
-// @Tags 配置
+// @Summary modify configuration
+// @Description get JSON
+// @Tags configuration
 // @Accept  application/json
 // @Product application/json
 // @Param data body models.SysConfig true "body"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/config [put]
 // @Security Bearer
 func UpdateConfig(c *gin.Context) {
 	var data models.SysConfig
 	err := c.BindWith(&data, binding.JSON)
-	tools.HasError(err, "数据解析失败", -1)
+	tools.HasError(err, "Data parsing failed", -1)
 	data.UpdateBy = tools.GetUserIdStr(c)
 	result, err := data.Update(data.ConfigId)
 	tools.HasError(err, "", -1)
-	app.OK(c, result,"")
+	app.OK(c, result, "")
 }
 
-// @Summary 删除配置
-// @Description 删除数据
-// @Tags 配置
+// @Summary delete configuration
+// @Description delete data
+// @Tags configuration
 // @Param configId path int true "configId"
-// @Success 200 {string} string	"{"code": 200, "message": "删除成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "删除失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Successfully deleted"}"
+// @Success 200 {string} string "{"code": -1, "message": "Deletion failed"}"
 // @Router /api/v1/config/{configId} [delete]
 func DeleteConfig(c *gin.Context) {
 	var data models.SysConfig
 	data.UpdateBy = tools.GetUserIdStr(c)
 	IDS := tools.IdsStrToIdsIntGroup("configId", c)
 	result, err := data.BatchDelete(IDS)
-	tools.HasError(err, "修改失败", 500)
+	tools.HasError(err, "Modification failed", 500)
 	app.OK(c, result, msg.DeletedSuccess)
 }
-
-

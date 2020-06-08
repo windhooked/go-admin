@@ -1,30 +1,29 @@
 package app
 
 type Response struct {
-	// 代码
+	// code
 	Code int `json:"code" example:"200"`
-	// 数据集
+	// data set
 	Data interface{} `json:"data"`
-	// 消息
+	//
 	Msg string `json:"msg"`
 }
 
 type Page struct {
-	List interface{} `json:"list"`
-	Count int `json:"count"`
-	PageIndex int `json:"pageIndex"`
-	PageSize int `json:"pageSize"`
+	List      interface{} `json:"list"`
+	Count     int         `json:"count"`
+	PageIndex int         `json:"pageIndex"`
+	PageSize  int         `json:"pageSize"`
 }
 
 type PageResponse struct {
-	// 代码
+	// code
 	Code int `json:"code" example:"200"`
-	// 数据集
+	// data set
 	Data Page `json:"data"`
-	// 消息
+	// n
 	Msg string `json:"msg"`
 }
-
 
 func (res *Response) ReturnOK() *Response {
 	res.Code = 200
@@ -36,11 +35,7 @@ func (res *Response) ReturnError(code int) *Response {
 	return res
 }
 
-
 func (res *PageResponse) ReturnOK() *PageResponse {
 	res.Code = 200
 	return res
 }
-
-
-

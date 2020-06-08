@@ -6,16 +6,16 @@ import (
 )
 
 type SysTables struct {
-	TableId             int          `gorm:"primary_key;auto_increment" json:"tableId"`             //表编码
-	TBName              string       `gorm:"column:table_name;type:varchar(255);" json:"tableName"` //表名称
-	TableComment        string       `gorm:"type:varchar(255);" json:"tableComment"`                //表备注
-	ClassName           string       `gorm:"type:varchar(255);" json:"className"`                   //类名
+	TableId             int          `gorm:"primary_key;auto_increment" json:"tableId"`             //table encoding
+	TBName              string       `gorm:"column:table_name;type:varchar(255);" json:"tableName"` //
+	TableComment        string       `gorm:"type:varchar(255);" json:"tableComment"`                //Table remarks
+	ClassName           string       `gorm:"type:varchar(255);" json:"className"`                   //
 	TplCategory         string       `gorm:"type:varchar(255);" json:"tplCategory"`
-	PackageName         string       `gorm:"type:varchar(255);" json:"packageName"` //包名
-	ModuleName          string       `gorm:"type:varchar(255);" json:"moduleName"`  //模块名
+	PackageName         string       `gorm:"type:varchar(255);" json:"packageName"` //
+	ModuleName          string       `gorm:"type:varchar(255);" json:"moduleName"`
 	BusinessName        string       `gorm:"type:varchar(255);" json:"businessName"`
-	FunctionName        string       `gorm:"type:varchar(255);" json:"functionName"`   //功能名称
-	FunctionAuthor      string       `gorm:"type:varchar(255);" json:"functionAuthor"` //功能作者
+	FunctionName        string       `gorm:"type:varchar(255);" json:"functionName"`
+	FunctionAuthor      string       `gorm:"type:varchar(255);" json:"functionAuthor"`
 	PkColumn            string       `gorm:"type:varchar(255);" json:"pkColumn"`
 	PkGoField           string       `gorm:"type:varchar(255);" json:"pkGoField"`
 	PkJsonField         string       `gorm:"type:varchar(255);" json:"pkJsonField"`

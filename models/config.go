@@ -25,13 +25,13 @@ func (SysConfig) TableName() string {
 	return "sys_config"
 }
 
-// Config 创建
+// Config creation
 func (e *SysConfig) Create() (SysConfig, error) {
 	var doc SysConfig
 	i := 0
 	orm.Eloquent.Table(e.TableName()).Where("config_name=? or config_key = ?", e.ConfigName, e.ConfigKey).Count(&i)
 	if i > 0 {
-		return doc, errors.New("参数名称或者参数键名已经存在！")
+		return doc, errors.New("Parameter name or parameter key name already exists!")
 	}
 
 	result := orm.Eloquent.Table(e.TableName()).Create(&e)
@@ -43,7 +43,7 @@ func (e *SysConfig) Create() (SysConfig, error) {
 	return doc, nil
 }
 
-// 获取 Config
+// Get Config
 func (e *SysConfig) Get() (SysConfig, error) {
 	var doc SysConfig
 
@@ -77,7 +77,7 @@ func (e *SysConfig) GetPage(pageSize int, pageIndex int) ([]SysConfig, int, erro
 		table = table.Where("config_type = ?", e.ConfigType)
 	}
 
-	// 数据权限控制
+	// Data permission control
 	dataPermission := new(DataPermission)
 	dataPermission.UserId, _ = tools.StringToInt(e.DataScope)
 	table, err := dataPermission.GetDataScope("sys_config", table)
@@ -99,15 +99,15 @@ func (e *SysConfig) Update(id int) (update SysConfig, err error) {
 	}
 
 	if e.ConfigName != "" && e.ConfigName != update.ConfigName {
-		return update, errors.New("参数名称不允许修改！")
+		return update, errors.New("The parameter name is not allowed to be modified!")
 	}
 
 	if e.ConfigKey != "" && e.ConfigKey != update.ConfigKey {
-		return update, errors.New("参数键名不允许修改！")
+		return update, errors.New("Parameter key names are not allowed to be modified!")
 	}
 
-	//参数1:是要修改的数据
-	//参数2:是修改的数据
+	//Parameter 1: is the data to be modified
+	//Parameter 2: is the modified data
 	if err = orm.Eloquent.Table(e.TableName()).Model(&update).Updates(&e).Error; err != nil {
 		return
 	}

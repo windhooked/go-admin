@@ -1,14 +1,15 @@
 package handler
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/mojocn/base64Captcha"
-	"github.com/mssola/user_agent"
 	"go-admin/models"
 	jwt "go-admin/pkg/jwtauth"
 	"go-admin/tools"
 	"log"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/mojocn/base64Captcha"
+	"github.com/mssola/user_agent"
 )
 
 var store = base64Captcha.DefaultMemStore
@@ -41,8 +42,8 @@ func IdentityHandler(c *gin.Context) interface{} {
 	}
 }
 
-// @Summary 登陆
-// @Description 获取token
+// @Summary login
+// @Description get token
 // LoginHandler can be used by clients to get a jwt token.
 // Payload needs to be json in the form of {"username": "USERNAME", "password": "PASSWORD"}.
 // Reply will be of the form {"token": "TOKEN"}.
@@ -65,12 +66,12 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 	browserName, browserVersion := ua.Browser()
 	loginlog.Browser = browserName + " " + browserVersion
 	loginlog.Os = ua.OS()
-	loginlog.Msg = "登录成功"
+	loginlog.Msg = "Login successful"
 	loginlog.Platform = ua.Platform()
 
 	if err := c.ShouldBind(&loginVals); err != nil {
 		loginlog.Status = "1"
-		loginlog.Msg = "数据解析失败"
+		loginlog.Msg = "Data analysis failed"
 		loginlog.Username = loginVals.Username
 		loginlog.Create()
 		return nil, jwt.ErrMissingLoginValues
@@ -78,7 +79,7 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 	loginlog.Username = loginVals.Username
 	if !store.Verify(loginVals.UUID, loginVals.Code, true) {
 		loginlog.Status = "1"
-		loginlog.Msg = "验证码错误"
+		loginlog.Msg = "Verification code error"
 		loginlog.Create()
 		return nil, jwt.ErrInvalidVerificationode
 	}
@@ -89,7 +90,7 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 		return map[string]interface{}{"user": user, "role": role}, nil
 	} else {
 		loginlog.Status = "1"
-		loginlog.Msg = "登录失败"
+		loginlog.Msg = "Login failed"
 		loginlog.Create()
 		log.Println(e.Error())
 	}
@@ -97,13 +98,13 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 	return nil, jwt.ErrFailedAuthentication
 }
 
-// @Summary 退出登录
-// @Description 获取token
+// @Summary log out
+// @Description get token
 // LoginHandler can be used by clients to get a jwt token.
 // Reply will be of the form {"token": "TOKEN"}.
 // @Accept  application/json
 // @Product application/json
-// @Success 200 {string} string "{"code": 200, "msg": "成功退出系统" }"
+// @Success 200 {string} string "{"code": 200, "msg": "Successfully exited the system" }"
 // @Router /logout [post]
 // @Security
 func LogOut(c *gin.Context) {
@@ -120,11 +121,11 @@ func LogOut(c *gin.Context) {
 	loginlog.Os = ua.OS()
 	loginlog.Platform = ua.Platform()
 	loginlog.Username = tools.GetUserName(c)
-	loginlog.Msg = "退出成功"
+	loginlog.Msg = "Logout successful"
 	loginlog.Create()
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,
-		"msg":  "退出成功",
+		"msg":  "Exit successfully",
 	})
 
 }

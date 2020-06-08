@@ -1,23 +1,24 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
 	"go-admin/pkg/jwtauth"
 	jwt "go-admin/pkg/jwtauth"
+
+	"github.com/gin-gonic/gin"
 )
 
-// 路由示例
+// routing example
 func InitExamplesRouter(r *gin.Engine, authMiddleware *jwt.GinJWTMiddleware) *gin.Engine {
 
-	// 无需认证的路由
+	// routing without authentication
 	examplesNoCheckRoleRouter(r)
-	// 需要认证的路由
+	// Routes requiring authentication
 	examplesCheckRoleRouter(r, authMiddleware)
 
 	return r
 }
 
-// 无需认证的路由示例
+// Example routing without authentication
 func examplesNoCheckRoleRouter(r *gin.Engine) {
 
 	//v1 := r.Group("/api/v1")
@@ -25,7 +26,7 @@ func examplesNoCheckRoleRouter(r *gin.Engine) {
 
 }
 
-// 需要认证的路由示例
+// Examples of routes that require authentication
 func examplesCheckRoleRouter(r *gin.Engine, authMiddleware *jwtauth.GinJWTMiddleware) {
 
 	//v1auth := r.Use(authMiddleware.MiddlewareFunc()).Use(middleware.AuthCheckRole())
@@ -33,5 +34,3 @@ func examplesCheckRoleRouter(r *gin.Engine, authMiddleware *jwtauth.GinJWTMiddle
 	//	v1auth.GET("/examples/list", examples.apis)
 	//}
 }
-
-

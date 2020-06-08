@@ -35,7 +35,7 @@ func (e *DictData) Create() (DictData, error) {
 	i := 0
 	orm.Eloquent.Table(e.TableName()).Where("dict_label=? or (dict_label=? and dict_value = ?)", e.DictLabel, e.DictValue).Count(&i)
 	if i > 0 {
-		return doc, errors.New("字典标签或者字典键值已经存在！")
+		return doc, errors.New("Dictionary label or dictionary key already exists!")
 	}
 
 	result := orm.Eloquent.Table(e.TableName()).Create(&e)
@@ -104,7 +104,7 @@ func (e *DictData) GetPage(pageSize int, pageIndex int) ([]DictData, int, error)
 		table = table.Where("status = ?", e.Status)
 	}
 
-	// 数据权限控制
+	// Data permission control
 	dataPermission := new(DataPermission)
 	dataPermission.UserId, _ = tools.StringToInt(e.DataScope)
 	table, err := dataPermission.GetDataScope("sys_dict_data", table)
@@ -126,15 +126,15 @@ func (e *DictData) Update(id int) (update DictData, err error) {
 	}
 
 	if e.DictLabel != "" && e.DictLabel != update.DictLabel {
-		return update, errors.New("标签不允许修改！")
+		return update, errors.New("Label is not allowed to be modified!")
 	}
 
 	if e.DictValue != "" && e.DictValue != update.DictValue {
-		return update, errors.New("键值不允许修改！")
+		return update, errors.New("Key values ​​are not allowed to be modified!")
 	}
 
-	//参数1:是要修改的数据
-	//参数2:是修改的数据
+	//Parameter 1: is the data to be modified
+	//Parameter 2: is the modified data
 	if err = orm.Eloquent.Table(e.TableName()).Model(&update).Updates(&e).Error; err != nil {
 		return
 	}

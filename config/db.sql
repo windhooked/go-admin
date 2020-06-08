@@ -216,12 +216,14 @@ INSERT INTO `casbin_rule` VALUES ('p', 'admin', '/api/v1/dict/typeoptionselect',
 COMMIT;
 
 BEGIN;
+TRUNCATE TABLE `sys_config`;
 INSERT INTO `sys_config` VALUES (1,'Main frame page-default skin style name','sys_index_skinName','skin-blue','Y','blue skin-blue, green skin-green, purple skin-purple , Red skin-red, yellow skin-yellow', '1', '1', '2020-02-29 10:37:48', '2020-04-08 13:03:21', NULL);
-INSERT INTO `sys_config` VALUES (2,'User management-account initial password','sys.user.initPassword', '123456','Y','initialization password 123456', '1', '1', '2020-02-29 10:38:23', '2020-03-11 00:35:28', NULL);
-INSERT INTO `sys_config` VALUES (3,'Main frame page-sidebar theme','sys_index_sideTheme','theme-dark','Y','Dark theme theme-dark, light theme theme-light', '1', '1', '2020-02-29 10:39:01', '2020-04-07 23:21:50', NULL);
+INSERT INTO `sys_config` VALUES (2,'User management-account initial password','sys.user.initPassword', '123456','Y','initialization password 123456', '1', '1', '2020-02-29 10:38:23', '2020-03-11 00:35:28', NULL) ;
+INSERT INTO `sys_config` VALUES (3,'Main frame page-sidebar theme','sys_index_sideTheme','theme-dark','Y','Dark theme theme-dark, light theme theme-light', '1', '1', '2020-02-29 10:39:01', '2020-04-07 23:21:50', NULL) ;
 COMMIT;
 
 BEGIN;
+TRUNCATE TABLE `sys_dept`;
 INSERT INTO `sys_dept` VALUES (1, 0,'/0/1','Aituo Technology', 0,'aituo', '13782218188','atuo@aituo.com', 0, '1', '1 ', '2020-02-27 15:30:19', '2020-03-10 21:09:21', NULL);
 INSERT INTO `sys_dept` VALUES (7, 1,'/0/1/7','R&D Department', 1,'','','', 0, '1', '1', '2020-03-08 23:10:59', '2020-04-08 13:00:03', NULL);
 INSERT INTO `sys_dept` VALUES (8, 1,'/0/1/8','Operation and Maintenance Department', 0,'','','', 0, '1', NULL, '2020-03-08 23:11:08', '2020-03-10 16:50:27', NULL);
@@ -230,6 +232,7 @@ INSERT INTO `sys_dept` VALUES (10, 1,'/0/1/10','Human Resources', 3,'Zhang San',
 COMMIT;
 
 BEGIN;
+TRUNCATE TABLE `sys_dict_data`;
 INSERT INTO `sys_dict_data` VALUES (1, 0,'normal', '0','sys_normal_disable','','','', 0,'', '1','','system normal', ' 2020-02-28 20:55:34', '2020-03-08 23:11:15', NULL);
 INSERT INTO `sys_dict_data` VALUES (2, 0,'disable', '1','sys_normal_disable','','','', 0,'', '1','','system disabled' , '2020-02-28 21:10:41', '2020-03-08 23:11:15', NULL);
 INSERT INTO `sys_dict_data` VALUES (3, 0,'Male', '0','sys_user_sex','','','', 0,'', '1','','Gender Male', ' 2020-02-28 21:37:28', '2020-03-08 23:11:15', NULL);
@@ -264,6 +267,7 @@ INSERT INTO `sys_dict_data` VALUES (31, 0,'Get verification code', '12','sys_ope
 COMMIT;
 
 BEGIN;
+TRUNCATE TABLE `sys_dict_type`;
 INSERT INTO `sys_dict_type` VALUES (1,'System switch','sys_normal_disable', 0, '1', '1','System switch list', '2020-04-11 15:52:48', NULL, NULL );
 INSERT INTO `sys_dict_type` VALUES (2,'User Gender','sys_user_sex', 0, '1','','User Gender List', '2020-04-11 15:52:48', NULL, NULL) ;
 INSERT INTO `sys_dict_type` VALUES (3,'Menu status','sys_show_hide', 0, '1','','Menu status list', '2020-04-11 15:52:48', NULL, NULL) ;
@@ -278,6 +282,7 @@ INSERT INTO `sys_dict_type` VALUES (11, '1', '1', 1, '1', '1', '1', '2020-04-11 
 COMMIT;
 
 BEGIN;
+TRUNCATE TABLE `sys_menu`;
 INSERT INTO `sys_menu` VALUES (2,'Upms','System Management','example','/upms','/0/2','M','None','', 0, '1' ,'','Layout', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (3,'Sysuser','User Management','user','sysuser','/0/2/3','C','None','system:sysuser:list' , 2, NULL, NULL,'/sysuser/index', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:10:42', NULL);
 INSERT INTO `sys_menu` VALUES (43, NULL,'Add User', NULL,'/api/v1/sysuser','/0/2/3/43','F','POST','system: sysuser:add', 3, NULL, NULL, NULL, 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -285,7 +290,6 @@ INSERT INTO `sys_menu` VALUES (44, NULL,'Query user', NULL,'/api/v1/sysuser','/0
 INSERT INTO `sys_menu` VALUES (45, NULL,'Modify user', NULL,'/api/v1/sysuser/','/0/2/3/45','F','PUT','system: sysuser:edit', 3, NULL, NULL, NULL, 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (46, NULL,'Delete user', NULL,'/api/v1/sysuser/','/0/2/3/46','F','DELETE','system: sysuser:remove', 3, NULL, NULL, NULL, 0, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 15:32:45', NULL);
 INSERT INTO `sys_menu` VALUES (51,'Menu','Menu Management','tree-table','menu','/0/2/51','C','None','system:sysmenu: list', 2, '1','','/menu/index', 3, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:16:30', NULL);
-
 INSERT INTO `sys_menu` VALUES (52,'Role','Role Management','peoples','role','/0/2/52','C','None','system:sysrole:list' , 2, '1','','/role/index', 2, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:16:19', NULL);
 INSERT INTO `sys_menu` VALUES (56,'Dept','Department Management','tree','dept','/0/2/56','C','None','system:sysdept:list' , 2, '0','','/dept/index', 4, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:16:47', NULL);
 INSERT INTO `sys_menu` VALUES (57,'post','post management','pass','post','/0/2/57','C','None','system:syspost:list' , 2, '0','','/post/index', 5, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:16:53', NULL);
@@ -304,7 +308,6 @@ INSERT INTO `sys_menu` VALUES (70,'','type','dict','','/0/63/69/70','C','','', 6
 INSERT INTO `sys_menu` VALUES (71,'','Dictionary type acquisition','tree','/api/v1/dict/databytype/','/0/63/256/71','A', ' GET','', 256, '0','','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL );
 INSERT INTO `sys_menu` VALUES (72,'','Edit menu','bug','/api/v1/menu','/0/63/66/72','A','PUT', ' ', 66, '0','','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (73,'','Delete menu','bug','/api/v1/menu/:id','/0/63/66/73','A','DELETE ','', 66, '0','','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL) ;
-
 INSERT INTO `sys_menu` VALUES (74, NULL,'Administrator List','bug','/api/v1/sysUserList','/0/63/64/74','A','GET', NULL , 64, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (75, NULL,'Acquire administrator by id','bug','/api/v1/sysUser/:id','/0/63/64/75','A', 'GET', NULL, 64, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (76, NULL,'Get Administrator','bug','/api/v1/sysUser/','/0/63/64/76','A','GET', NULL, 64, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -312,7 +315,6 @@ INSERT INTO `sys_menu` VALUES (77, NULL,'Create Administrator','bug','/api/v1/sy
 INSERT INTO `sys_menu` VALUES (78, NULL,'Modify Administrator','bug','/api/v1/sysUser','/0/63/64/78','A','PUT', NULL , 64, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (79, NULL,'Delete Administrator','bug','/api/v1/sysUser/:id','/0/63/64/79','A','DELETE ', NULL, 64, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (80, NULL,'Current user personal information','bug','/api/v1/user/profile','/0/63/256/267/80','A', 'GET', NULL, 267, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', '2020-05-03 20:50:40', NULL);
-
 INSERT INTO `sys_menu` VALUES (81, NULL,'role list','bug','/api/v1/rolelist','/0/63/201/81','A','GET', NULL, 201, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (82, NULL,'Get role information','bug','/api/v1/role/:id','/0/63/201/82','A','GET ', NULL, 201, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (83, NULL,'Create role','bug','/api/v1/role','/0/63/201/83','A','POST', NULL, 201, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -321,7 +323,6 @@ INSERT INTO `sys_menu` VALUES (85, NULL,'Delete role','bug','/api/v1/role/:id','
 INSERT INTO `sys_menu` VALUES (86, NULL,'Parameter List','bug','/api/v1/configList','/0/63/202/86','A','GET', NULL, 202, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (87, NULL,'Get parameters based on id','bug','/api/v1/config/:id','/0/63/202/87','A', ' GET', NULL, 202, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (88, NULL,'Acquire parameters based on key','bug','/api/v1/configKey/:id','/0/63/256/88','A', ' GET', NULL, 256, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', '2020-05-03 20:54:37', NULL);
-
 INSERT INTO `sys_menu` VALUES (89, NULL,'Create parameter','bug','/api/v1/config','/0/63/202/89','A','POST', NULL, 202, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (90, NULL,'Modify parameter','bug','/api/v1/config','/0/63/202/90','A','PUT', NULL, 202, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (91, NULL,'Delete parameter','bug','/api/v1/config/:id','/0/63/202/91','A','DELETE' , NULL, 202, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -331,7 +332,6 @@ INSERT INTO `sys_menu` VALUES (94, NULL,'Get Menu Tree','bug','/api/v1/menuTrees
 INSERT INTO `sys_menu` VALUES (95, NULL,'Get role menu','bug','/api/v1/rolemenu','/0/63/205/95','A','GET', NULL , 205, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (96, NULL,'Create role menu','bug','/api/v1/rolemenu','/0/63/205/96','A','POST', NULL , 205, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (97, NULL,'Delete user menu data','bug','/api/v1/rolemenu/:id','/0/63/205/97','A', ' DELETE', NULL, 205, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (103, NULL,'Department Menu List','bug','/api/v1/deptList','/0/63/203/103','A','GET', NULL , 203, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (104, NULL,'Acquire department information based on id','bug','/api/v1/dept/:id','/0/63/203/104','A', 'GET', NULL, 203, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (105, NULL,'Create Department','bug','/api/v1/dept','/0/63/203/105','A','POST', NULL, 203, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -339,8 +339,7 @@ INSERT INTO `sys_menu` VALUES (106, NULL,'Modify Department','bug','/api/v1/dept
 INSERT INTO `sys_menu` VALUES (107, NULL,'Delete Department','bug','/api/v1/dept/:id','/0/63/203/107','A','DELETE' , NULL, 203, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (108, NULL,'Dictionary data list','bug','/api/v1/dict/datalist','/0/63/69/206/108','A', ' GET', NULL, 206, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (109, NULL,'Get dictionary data by encoding','bug','/api/v1/dict/data/:id','/0/63/69/206/109', 'A','GET', NULL, 206, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL );
-INSERT INTO `sys_menu` VALUES (110, NULL,'Get dictionary data by dictionary type','bug','/api/v1/dict/databytype/:id','/0/63/256/110', ' A','GET', NULL, 256, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL) ;
-
+INSERT INTO `sys_menu` VALUES (110, NULL,'Get dictionary data by dictionary type','bug','/api/v1/dict/databytype/:id','/0/63/256/110', 'A','GET', NULL, 256, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL) ;
 INSERT INTO `sys_menu` VALUES (111, NULL,'Create dictionary data','bug','/api/v1/dict/data','/0/63/69/206/111','A', ' POST', NULL, 206, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (112, NULL,'Modify dictionary data','bug','/api/v1/dict/data/','/0/63/69/206/112','A', 'PUT', NULL, 206, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (113, NULL,'Delete dictionary data','bug','/api/v1/dict/data/:id','/0/63/69/206/113','A ','DELETE', NULL, 206, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -349,7 +348,6 @@ INSERT INTO `sys_menu` VALUES (115, NULL,'Get dictionary type by id','bug','/api
 INSERT INTO `sys_menu` VALUES (116, NULL,'Create dictionary type','bug','/api/v1/dict/type','/0/63/69/70/116','A', ' POST', NULL, 70, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (117, NULL,'Modify dictionary type','bug','/api/v1/dict/type','/0/63/69/70/117','A', ' PUT', NULL, 70, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (118, NULL,'Delete dictionary type','bug','/api/v1/dict/type/:id','/0/63/69/70/118','A ','DELETE', NULL, 70, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (119, NULL,'Get post list','bug','/api/v1/postlist','/0/63/204/119','A','GET', NULL , 204, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (120, NULL,'Get post information by id','bug','/api/v1/post/:id','/0/63/204/120','A', 'GET', NULL, 204, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (121, NULL,'Create post','bug','/api/v1/post','/0/63/204/121','A','POST', NULL, 204, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -360,7 +358,6 @@ INSERT INTO `sys_menu` VALUES (138, NULL,'Get menu information based on id','bug
 INSERT INTO `sys_menu` VALUES (139, NULL,'Create menu','bug','/api/v1/menu','/0/63/66/139','A','POST', NULL, 66, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (140, NULL,'Edit menu','bug','/api/v1/menu/:id','/0/63/66/140','A','PUT' , NULL, 66, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (141, NULL,'Delete menu','bug','/api/v1/menu/:id','','A','DELETE', NULL, 66, NULL, NULL , NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (142, NULL,'Get the menu id array corresponding to the role','bug','/api/v1/menuids','/0/63/256/142','A', ' GET', NULL, 256, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (201,'','role management','peoples','','/0/63/201','C','GET','', 63, '0', '','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (202,'','Parameter setting','list','','/0/63/202','C','DELETE','', 63, '0', '','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -368,9 +365,8 @@ INSERT INTO `sys_menu` VALUES (203,'','Department Management','tree','','/0/63/2
 INSERT INTO `sys_menu` VALUES (204,'','post management','pass','','/0/63/204','C','','', 63, '0', ' ','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (205,'','Role menu management','nested','','/0/63/205','C','','', 63, '0', '','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (206,'','Data','','','/0/63/69/206','C','PUT','', 69, '0', '','', 2, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (211,'Log','Log Management','log','/log','/0/2/211','M','','', 2, '0 ','','/log/index', 8, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:15 :32', NULL);
+INSERT INTO `sys_menu` VALUES (211,'Log','Log Management','log','/log','/0/2/211','M','','', 2, '0 ','','/log/index', 8, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:15:32', NULL);
 INSERT INTO `sys_menu` VALUES (212,'LoginLog','Login Log','logininfor','/loginlog','/0/2/211/212','C','','system:sysloginlog: list', 211, '0','','/loginlog/index', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (213, NULL,'Get login log','bug','/api/v1/loginloglist','/0/63/214/213','A','GET', NULL , 214, NULL, NULL, NULL, 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (214,'','Log Management','log','','/0/63/214','M','GET','', 63, '0', '','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (215,'','Delete log','bug','/api/v1/loginlog/:id','/0/63/214/215','A','DELETE ','', 214, '0','','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL) ;
@@ -379,7 +375,6 @@ INSERT INTO `sys_menu` VALUES (217,'','Get operation log','bug','/api/v1/operlog
 INSERT INTO `sys_menu` VALUES (220,'','Add Menu','','','/0/2/51/220','F','','system:sysmenu:add', 51, '0','','', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (221,'','Modify menu','edit','','/0/2/51/221','F','','system:sysmenu:edit', 51, '0','','', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (222,'','Query menu','search','','/0/2/51/222','F','','system:sysmenu:query', 51, '0','','', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (223,'','Delete menu','','','/0/2/51/223','F','','system:sysmenu:remove', 51 , '0','','', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (224,'','Add role','','','/0/2/52/224','F','','system:sysrole:add', 52, '0','','', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (225,'','Query role','','','/0/2/52/225','F','','system:sysrole:query', 52 , '0','','', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -389,7 +384,6 @@ INSERT INTO `sys_menu` VALUES (228,'','Query department','','','/0/2/56/228','F'
 INSERT INTO `sys_menu` VALUES (229,'','Add department','','','/0/2/56/229','F','','system:sysdept:add', 56, '0','','', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (230,'','Modify Department','','','/0/2/56/230','F','','system:sysdept:edit', 56 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (231,'','Delete Department','','','/0/2/56/231','F','','system:sysdept:remove', 56 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (232,'','Query post','','','/0/2/57/232','F','','system:syspost:query', 57 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (233,'','Add post','','','/0/2/57/233','F','','system:syspost:add', 57, '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (234,'','Modify post','','','/0/2/57/234','F','','system:syspost:edit', 57 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -400,7 +394,6 @@ INSERT INTO `sys_menu` VALUES (238,'','Modify type','','','/0/2/58/238','F','','
 INSERT INTO `sys_menu` VALUES (239,'','Delete type','','','/0/2/58/239','F','','system:sysdicttype:remove', 58 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (240,'','Query data','','','/0/2/59/240','F','','system:sysdictdata:query', 59 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (241,'','Add data','','','/0/2/59/241','F','','system:sysdictdata:add', 59, '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (242,'','Modify data','','','/0/2/59/242','F','','system:sysdictdata:edit', 59 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (243,'','Delete data','','','/0/2/59/243','F','','system:sysdictdata:remove', 59 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (244,'','Query parameters','','','/0/2/62/244','F','','system:sysconfig:query', 62 , '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -411,7 +404,6 @@ INSERT INTO `sys_menu` VALUES (248,'','Query login log','','','/0/2/211/212/248'
 INSERT INTO `sys_menu` VALUES (249,'','Delete login log','','','/0/2/211/212/249','F','','system:sysloginlog:remove ', 212, '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (250,'','Query operation log','','','/0/2/211/216/250','F','','system:sysoperlog:query ', 216, '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (251,'','Delete operation log','','','/0/2/211/216/251','F','','system:sysoperlog:remove ', 216, '0','','', 0, '0', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (252,'','Get login user information','','/api/v1/getinfo','/0/63/256/252','A','GET', '', 256, '0','','', 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (253,'','role data permissions','','/api/v1/roledatascope','/0/63/201/253','A','PUT', ' ', 201, '0','','', 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (254,'','Department tree interface [data permissions]','','/api/v1/roleDeptTreeselect/:id','/0/63/256/254','A ','GET','', 256, '0','','', 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
@@ -419,29 +411,31 @@ INSERT INTO `sys_menu` VALUES (255,'','Department tree [user list]','','/api/v1/
 INSERT INTO `sys_menu` VALUES (256,'','Must open interface','','','/0/63/256','M','GET','', 63, '0', '','', 0, '1', '1','', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (257,'','Get parameters by key','bug','/api/v1/configKey/:id','/0/63/256/257','A', 'GET','', 256, '0','','', 1, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_menu` VALUES (258,'','Logout','','/api/v1/logout','/0/63/256/258','A','POST','' , 256, '0','','', 0, '1', '1', '1', 0, '2020-04-11 15:52:48', NULL, NULL);
-
 INSERT INTO `sys_menu` VALUES (259,'','avatar upload','','/api/v1/user/avatar','/0/63/256/267/259','A','POST ','', 267, '0','','', 0, '1', '1', '1', 0, '2020-04-11 15:52:48', '2020-05-03 20:50:05', NULL);
 INSERT INTO `sys_menu` VALUES (260,'','Change password','','/api/v1/user/pwd','/0/63/256/260','A','PUT', '', 256, '0','','', 0, '1', '1','', 0, '2020-04-11 15:52:48', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (261,'Gen','Code generation','code','gen','/0/60/261','C','','', 60, '0' ,'','/tools/gen/index', 2, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11: 18:12', NULL);
+INSERT INTO `sys_menu` VALUES (261,'Gen','Code generation','code','gen','/0/60/261','C','','', 60, '0' ,'','/tools/gen/index', 2, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:18:12', NULL);
 INSERT INTO `sys_menu` VALUES (262,'EditTable','Code generation modification','build','editTable','/0/60/262','C','','', 60, '0 ','','/tools/gen/editTable', 100, '1', '1', '1', 0, '2020-04-11 15:52:48', '2020-05-03 20:38:36', NULL);
 INSERT INTO `sys_menu` VALUES (263,'','Dictionary type drop-down box [generation function]','','/api/v1/dict/typeoptionselect','/0/63/256/263','A ','GET','', 256, '0','','', 0, '1', '1','', 0, '2020-04-11 15:52:48', NULL , NULL);
 INSERT INTO `sys_menu` VALUES (264,'Build','Form build','build','build','/0/60/264','C','','', 60, '0' ,'','/tools/build/index', 1, '0', '1', '1', 0, '2020-04-11 15:52:48', '2020-04-12 11:18:05', NULL);
 INSERT INTO `sys_menu` VALUES (267,'','Personal Center','','','/0/63/256/267','M','','', 256, '0', '','', 0, '1', '1','', 1, '2020-05-03 20:49:39', '2020-05-03 20:49:39', NULL);
 COMMIT;
 
-BEGIN;
-INSERT INTO `sys_post` VALUES (1,'CEO','CEO', 0, 0,'CEO', '1', '2020-03-08 23:11:15', '2020-04 -11 15:52:48', NULL, NULL);
+BEGIN; 
+TRUNCATE TABLE `sys_post`;
+INSERT INTO `sys_post` VALUES (1,'CEO','CEO', 0, 0,'CEO', '1', '2020-03-08 23:11:15', '2020-04-11 15:52:48', NULL, NULL);
 INSERT INTO `sys_post` VALUES (2,'Chief Technology Executive Officer','CTO', 2, 0,'Chief Technology Executive Officer', '1', '1', '2020-04-11 15:52:48 ', '2020-05-03 20:58:01', NULL);
 INSERT INTO `sys_post` VALUES (3,'Chief Operating Officer','COO', 3, 0,'Test Engineer', '1', '1', '2020-04-11 15:52:48', NULL , NULL);
 COMMIT;
 
 BEGIN;
+TRUNCATE TABLE `sys_role`;
 INSERT INTO `sys_role` VALUES (1,'System Administrator', 0,'admin', 1, NULL, '1', NULL, NULL, '0', NULL, '2020-04-11 15:52:48 ', '2020-05-03 21:35:17', NULL);
-INSERT INTO `sys_role` VALUES (2,'Common role', 0,'common', 2, NULL, '1', NULL, NULL, '0', '2', '2020-04-11 15:52: 48', '2020-05-03 21:32:59', NULL);
+INSERT INTO `sys_role` VALUES (2,'Common role', 0,'common', 2, NULL, '1', NULL, NULL, '0', '2', '2020-04-11 15:52:48', '2020-05-03 21:32:59', NULL);
 INSERT INTO `sys_role` VALUES (3,'Test role', 0,'Tester', 3,'', '1', NULL, NULL, '0', NULL, '2020-04-11 15:52:48 ', '2020-04-12 14:10:52', NULL);
 COMMIT;
 
 BEGIN;
+TRUNCATE TABLE `sys_role_menu`;
 INSERT INTO `sys_role_menu` VALUES (2, 2, 'common', NULL, NULL);
 INSERT INTO `sys_role_menu` VALUES (2, 3, 'common', NULL, NULL);
 INSERT INTO `sys_role_menu` VALUES (2, 44, 'common', NULL, NULL);
@@ -669,11 +663,14 @@ INSERT INTO `sys_role_menu` VALUES (1, 267, 'admin', NULL, NULL);
 COMMIT;
 
 BEGIN;
-INSERT INTO `sys_user` VALUES (1, 'zhangwj', '13818888888', 1, NULL, '', '0', '1@qq.com', 1, 1, '1', '1', NULL, 0, '2019-11-10 14:05:55', '2020-05-03 20:45:59', NULL, 'admin', '$2a$10$cKFFTCzGOvaIHHJY2K45Zuwt8TD6oPzYi4s5MzYIBAWCLL6ZhouP2');
+TRUNCATE TABLE `sys_user`;
+INSERT INTO `sys_user` VALUES (1, 'zhangwj', '13818888888', 1, NULL, '', '0', '1@qq.com', 1, 1, '1', '1', NULL, 0, '2019-11-10 14:05:55', '2020-05-03 20:45:59', NULL, 'admin', '$2a$07$jtRaoNpUAuG8Mw/aY3A1XuuvgrYh4FZYcF9pYPT3lwFx0HTjwrLwy');
 INSERT INTO `sys_user` VALUES (2, 'zhangwj', '13211111111', 3, NULL, NULL, '0', 'q@q.com', 8, 2, '1', '1', NULL, 0, '2019-11-12 18:28:27', '2020-03-14 20:08:43', NULL, 'zhangwj', '$2a$10$CqMwHahA3cNrNv16CoSxmeD4XMPU.BiKHPEAeaG5oXMavOKrjInXi');
 INSERT INTO `sys_user` VALUES (3, 'user1', '13838385438', 2, '', '', '0', 'qq@qq.com', 7, 2, '1', '1', '', 0, '2020-04-07 22:17:38', '2020-05-03 20:31:00', NULL, 'lisi', '$2a$10$DejldFea5.hGZGC7/oVN9OLDrHAWgu9l29RDz9FomLnWnro4umYl2');
 INSERT INTO `sys_user` VALUES (4, 'user2', '13535353535', 3, '', '', '2', 'qq@qq.com', 8, 2, '1', '1', '', 0, '2020-04-12 14:06:49', '2020-04-12 14:07:09', NULL, 'wangwu', '$2a$10$3.RT6rpXANXvvlibX6PzU.FGA2CvfDxd1UmJ2H5zTzF4sYocbvsTO');
 COMMIT;
+
+
 
 SET FOREIGN_KEY_CHECKS = 1;
 -- done;

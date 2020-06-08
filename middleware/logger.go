@@ -6,51 +6,46 @@ import (
 	"strings"
 	"time"
 
+	"github.com/rs/zerolog/log"
+
 	"github.com/gin-gonic/gin"
-	"github.com/sirupsen/logrus"
+	//	"github.com/sirupsen/logrus"
 )
 
-//实例化
-var logger = logrus.New()
+//Instantiate
+//var logger = logrus.New()
 
-// 日志记录到文件
+// log to file
 func LoggerToFile() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
-		// 开始时间
+		// Starting time
 		startTime := time.Now()
 
-		// 处理请求
+		// process request
 		c.Next()
 
-		// 结束时间
+		// End Time
 		endTime := time.Now()
 
-		// 执行时间
+		// execution time
 		latencyTime := endTime.Sub(startTime)
 
-		// 请求方式
+		// Request method
 		reqMethod := c.Request.Method
 
-		// 请求路由
+		// Request routing
 		reqUri := c.Request.RequestURI
 
-		// 状态码
+		// status code
 		statusCode := c.Writer.Status()
 
-		// 请求IP
+		// Request IP
 		clientIP := c.ClientIP()
 
-		// 日志格式
-		logger.Infof("%s [%s] %3d %13v %15s %s %s \r\n",
-			startTime.Format("2006-01-02 15:04:05.9999"),
-			strings.ToUpper(logger.Level.String()),
-			statusCode,
-			latencyTime,
-			clientIP,
-			reqMethod,
-			reqUri,
-		)
+		// log format
+		//		logger.Infof("%s [%s] %3d %13v %15s %s %s \r\n", startTime.Format("2006-01-02 15:04:05.9999"), strings.ToUpper(logger.Level.String()), statusCode, latencyTime, clientIP, reqMethod, reqUri,)
+		log.Info().Int("statusCode", statusCode).Dur("latencyTime", latencyTime).Str("clientIP", clientIP).Str("reqMethod", reqMethod).Str("reqUri", reqUri)
 
 		if c.Request.Method != "GET" && c.Request.Method != "OPTIONS" {
 			menu := models.Menu{}

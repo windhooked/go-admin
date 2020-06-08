@@ -2,11 +2,13 @@ package database
 
 import (
 	"bytes"
-	_ "github.com/go-sql-driver/mysql" //加载mysql
-	"github.com/jinzhu/gorm"
 	"go-admin/tools/config"
 
-	"log"
+	"github.com/rs/zerolog/log"
+
+	_ "github.com/go-sql-driver/mysql" //Load mysql
+	"github.com/jinzhu/gorm"
+
 	"strconv"
 )
 
@@ -16,7 +18,7 @@ var (
 	DbType   string
 	Host     string
 	Port     int
-	Name       string
+	Name     string
 	Username string
 	Password string
 )
@@ -31,13 +33,13 @@ func Setup() {
 	Password = config.DatabaseConfig.Password
 
 	if DbType != "mysql" {
-		log.Println("db type unknow")
+		log.Error().Msgf("db type unknow")
 	}
 	var err error
 
 	conn := GetMysqlConnect()
 
-	log.Println(conn)
+	log.Info().Msgf(conn)
 
 	var db Database
 	if DbType == "mysql" {
@@ -45,17 +47,16 @@ func Setup() {
 		Eloquent, err = db.Open(DbType, conn)
 
 	} else {
-		panic("db type unknow")
+		log.Fatal().Msg("db type unknow")
 	}
 	if err != nil {
-		log.Fatalf("%s connect error %v", DbType, err)
+		log.Fatal().Msgf("%s connect error %v", DbType, err)
 	} else {
-		log.Printf("%s connect success!", DbType)
+		log.Info().Msgf("%s connect success!", DbType)
 	}
 
-
 	if Eloquent.Error != nil {
-		log.Fatalf("database error %v", Eloquent.Error)
+		log.Fatal().Msgf("database error %v", Eloquent.Error)
 	}
 
 	Eloquent.LogMode(true)

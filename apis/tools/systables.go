@@ -1,20 +1,21 @@
 package tools
 
 import (
-	"github.com/gin-gonic/gin"
 	"go-admin/models/tools"
 	tools2 "go-admin/tools"
 	"go-admin/tools/app"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
-// @Summary 分页列表数据
-// @Description 生成表分页列表
-// @Tags 工具 - 生成表
-// @Param tableName query string false "tableName / 数据表名称"
-// @Param pageSize query int false "pageSize / 页条数"
-// @Param pageIndex query int false "pageIndex / 页码"
+// @Summary paging list data
+// @Description generates a table pagination list
+// @Tags tool-generate table
+// @Param tableName query string false "tableName / data table name"
+// @Param pageSize query int false "pageSize / number of pages"
+// @Param pageIndex query int false "pageIndex / page number"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/sys/tables/page [get]
 func GetSysTableList(c *gin.Context) {
@@ -48,9 +49,9 @@ func GetSysTableList(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 获取配置
-// @Description 获取JSON
-// @Tags 工具 - 生成表
+// @Summary get configuration
+// @Description get JSON
+// @Tags tool-generate table
 // @Param configKey path int true "configKey"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/sys/tables/info/{tableId} [get]
@@ -59,7 +60,7 @@ func GetSysTables(c *gin.Context) {
 	var data tools.SysTables
 	data.TableId, _ = tools2.StringToInt(c.Param("tableId"))
 	result, err := data.Get()
-	tools2.HasError(err, "抱歉未找到相关信息", -1)
+	tools2.HasError(err, "Sorry no relevant information was found", -1)
 
 	var res app.Response
 	res.Data = result
@@ -70,14 +71,14 @@ func GetSysTables(c *gin.Context) {
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 添加表结构
-// @Description 添加表结构
-// @Tags 工具 - 生成表
+// @Summary add table structure
+// @Description add table structure
+// @Tags tool-generate table
 // @Accept  application/json
 // @Product application/json
-// @Param tables query string false "tableName / 数据表名称"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Param tables query string false "tableName / data table name"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/sys/tables/info [post]
 // @Security Bearer
 func InsertSysTable(c *gin.Context) {
@@ -180,43 +181,43 @@ func genTableInit(tablesList []string, i int, c *gin.Context) (tools.SysTables, 
 	return data, err
 }
 
-// @Summary 修改表结构
-// @Description 修改表结构
-// @Tags 工具 - 生成表
+// @Summary modify the table structure
+// @Description modify the table structure
+// @Tags tool-generate table
 // @Accept  application/json
 // @Product application/json
 // @Param data body models.Dept true "body"
-// @Success 200 {string} string	"{"code": 200, "message": "添加成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "添加失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Add success"}"
+// @Success 200 {string} string "{"code": -1, "message": "Add failed"}"
 // @Router /api/v1/sys/tables/info [put]
 // @Security Bearer
 func UpdateSysTable(c *gin.Context) {
 	var data tools.SysTables
 	err := c.Bind(&data)
-	tools2.HasError(err, "数据解析失败", -1)
+	tools2.HasError(err, "Data analysis failed", -1)
 	data.UpdateBy = tools2.GetUserIdStr(c)
 	result, err := data.Update()
 	tools2.HasError(err, "", -1)
 
 	var res app.Response
 	res.Data = result
-	res.Msg = "修改成功"
+	res.Msg = "Modified successfully"
 	c.JSON(http.StatusOK, res.ReturnOK())
 }
 
-// @Summary 删除表结构
-// @Description 删除表结构
-// @Tags 工具 - 生成表
+// @Summary delete the table structure
+// @Description delete table structure
+// @Tags tool-generate table
 // @Param tableId path int true "tableId"
-// @Success 200 {string} string	"{"code": 200, "message": "删除成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "删除失败"}"
+// @Success 200 {string} string "{"code": 200, "message": "Successfully deleted"}"
+// @Success 200 {string} string "{"code": -1, "message": "Deletion failed"}"
 // @Router /api/v1/sys/tables/info/{tableId} [delete]
 func DeleteSysTables(c *gin.Context) {
 	var data tools.SysTables
 	IDS := tools2.IdsStrToIdsIntGroup("tableId", c)
 	_, err := data.BatchDelete(IDS)
-	tools2.HasError(err, "删除失败", 500)
+	tools2.HasError(err, "Deletion failed", 500)
 	var res app.Response
-	res.Msg = "删除成功"
+	res.Msg = "Successfully deleted"
 	c.JSON(http.StatusOK, res.ReturnOK())
 }

@@ -1,10 +1,11 @@
 package system
 
 import (
-	"github.com/gin-gonic/gin"
 	"go-admin/models"
 	"go-admin/tools"
 	"go-admin/tools/app"
+
+	"github.com/gin-gonic/gin"
 )
 
 func GetInfo(c *gin.Context) {
@@ -19,7 +20,7 @@ func GetInfo(c *gin.Context) {
 
 	var mp = make(map[string]interface{})
 	mp["roles"] = roles
-	if tools.GetRoleName(c) == "admin" || tools.GetRoleName(c) == "系统管理员" {
+	if tools.GetRoleName(c) == "admin" || tools.GetRoleName(c) == "System Administrator" {
 		mp["permissions"] = permissions
 	} else {
 		list, _ := RoleMenu.GetPermis()
@@ -39,5 +40,5 @@ func GetInfo(c *gin.Context) {
 	}
 	mp["name"] = user.NickName
 
-	app.OK(c,mp,"")
+	app.OK(c, mp, "")
 }

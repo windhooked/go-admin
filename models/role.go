@@ -1,9 +1,10 @@
 package models
 
 import (
-	"github.com/pkg/errors"
 	orm "go-admin/database"
 	"go-admin/tools"
+
+	"github.com/pkg/errors"
 )
 
 type SysRole struct {
@@ -49,10 +50,10 @@ func (e *SysRole) GetPage(pageSize int, pageIndex int) ([]SysRole, int, error) {
 		table = table.Where("role_key = ?", e.RoleKey)
 	}
 
-	// 数据权限控制
+	// Data permission control
 	dataPermission := new(DataPermission)
 	dataPermission.UserId, _ = tools.StringToInt(e.DataScope)
-	table,err := dataPermission.GetDataScope("sys_role", table)
+	table, err := dataPermission.GetDataScope("sys_role", table)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -95,7 +96,7 @@ func (role *SysRole) GetList() (SysRole []SysRole, err error) {
 	return
 }
 
-// 获取角色对应的菜单ids
+// Get the menu ids corresponding to the character
 func (role *SysRole) GetRoleMeunId() ([]int, error) {
 	menuIds := make([]int, 0)
 	menuList := make([]MenuIdList, 0)
@@ -113,7 +114,7 @@ func (role *SysRole) Insert() (id int, err error) {
 	i := 0
 	orm.Eloquent.Table("sys_role").Where("role_name=? or role_key = ?", role.RoleName, role.RoleKey).Count(&i)
 	if i > 0 {
-		return 0, errors.New("角色名称或者角色标识已经存在！")
+		return 0, errors.New("The role name or role ID already exists!")
 	}
 	role.UpdateBy = ""
 	result := orm.Eloquent.Table("sys_role").Create(&role)
@@ -143,29 +144,29 @@ func (role *SysRole) GetRoleDeptId() ([]int, error) {
 	return deptIds, nil
 }
 
-//修改
+//modify
 func (role *SysRole) Update(id int) (update SysRole, err error) {
 	if err = orm.Eloquent.Table("sys_role").First(&update, id).Error; err != nil {
 		return
 	}
 
 	if role.RoleName != "" && role.RoleName != update.RoleName {
-		return update, errors.New("角色名称不允许修改！")
+		return update, errors.New("The role name is not allowed to be modified!")
 	}
 
 	if role.RoleKey != "" && role.RoleKey != update.RoleKey {
-		return update, errors.New("角色标识不允许修改！")
+		return update, errors.New("The role ID is not allowed to be modified!")
 	}
 
-	//参数1:是要修改的数据
-	//参数2:是修改的数据
+	//Parameter 1: is the data to be modified
+	//Parameter 2: is the modified data
 	if err = orm.Eloquent.Table("sys_role").Model(&update).Updates(&role).Error; err != nil {
 		return
 	}
 	return
 }
 
-//批量删除
+//batch deletion
 func (e *SysRole) BatchDelete(id []int) (Result bool, err error) {
 	if err = orm.Eloquent.Table("sys_role").Where("role_id in (?)", id).Delete(&SysRole{}).Error; err != nil {
 		return

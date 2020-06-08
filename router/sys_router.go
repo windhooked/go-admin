@@ -1,9 +1,6 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
-	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/swaggo/gin-swagger/swaggerFiles"
 	log2 "go-admin/apis/log"
 	"go-admin/apis/monitor"
 	"go-admin/apis/system"
@@ -14,20 +11,24 @@ import (
 	"go-admin/middleware"
 	"go-admin/pkg/jwtauth"
 	jwt "go-admin/pkg/jwtauth"
+
+	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 func InitSysRouter(r *gin.Engine, authMiddleware *jwt.GinJWTMiddleware) *gin.RouterGroup {
 	g := r.Group("")
 	sysBaseRouter(g)
-	// 静态文件
+	// static files
 	sysStaticFileRouter(g)
 
-	// swagger；注意：生产环境可以注释掉
+	// swagger; note: the production environment can be commented out
 	sysSwaggerRouter(g)
 
-	// 无需认证
+	// no authentication required
 	sysNoCheckRoleRouter(g)
-	// 需要认证
+	// authentication required
 	sysCheckRoleRouterInit(g, authMiddleware)
 
 	return g

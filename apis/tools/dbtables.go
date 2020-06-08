@@ -1,20 +1,21 @@
 package tools
 
 import (
-	"github.com/gin-gonic/gin"
 	"go-admin/models/tools"
 	tools2 "go-admin/tools"
 	"go-admin/tools/app"
 	config2 "go-admin/tools/config"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-// @Summary 分页列表数据 / page list data
-// @Description 数据库表分页列表 / database table page list
-// @Tags 工具 / Tools
-// @Param tableName query string false "tableName / 数据表名称"
-// @Param pageSize query int false "pageSize / 页条数"
-// @Param pageIndex query int false "pageIndex / 页码"
+// @Summary page list data / page list data
+// @Description database table page list / database table page list
+// @Tags tools / Tools
+// @Param tableName query string false "tableName / data table name"
+// @Param pageSize query int false "pageSize / number of pages"
+// @Param pageIndex query int false "pageIndex / page number"
 // @Success 200 {object} app.Response "{"code": 200, "data": [...]}"
 // @Router /api/v1/db/tables/page [get]
 func GetDBTableList(c *gin.Context) {
@@ -23,8 +24,8 @@ func GetDBTableList(c *gin.Context) {
 	var err error
 	var pageSize = 10
 	var pageIndex = 1
-	if config2.DatabaseConfig.Dbtype=="sqlite3"{
-		res.Msg="对不起，sqlite3 暂不支持代码生成！"
+	if config2.DatabaseConfig.Dbtype == "sqlite3" {
+		res.Msg = "Sorry, sqlite3 does not support code generation yet!"
 		c.JSON(http.StatusOK, res.ReturnError(500))
 		return
 	}
@@ -46,7 +47,6 @@ func GetDBTableList(c *gin.Context) {
 	mp["count"] = count
 	mp["pageIndex"] = pageIndex
 	mp["pageSize"] = pageSize
-
 
 	res.Data = mp
 
